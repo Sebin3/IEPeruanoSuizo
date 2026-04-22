@@ -1,0 +1,27 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.IEPeruanoSuizoAPP" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <item name="colorPrimary">@color/inputcolorgris</item>
+
+        <!-- Atributos para Home -->
+        <item name="homeHeaderBackground">@color/white</item>
+        <item name="homeContentBackground">#F5F5F5</item>
+        <item name="homeCardBackground">@color/white</item>
+        <item name="homeTextColorSebastian">#141A1E</item>
+        <item name="homeTextColorTitles">#263238</item>
+        <item name="homeTextColorCardLabel">#455A64</item>
+    </style>
+
+    <style name="Theme.IEPeruanoSuizoAPP" parent="Base.Theme.IEPeruanoSuizoAPP" />
+
+    <style name="DrawerTextStyle" parent="TextAppearance.MaterialComponents.Body1">
+        <item name="android:fontFamily">@font/leaguespartanmedium</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <style name="CircleImage">
+        <item name="cornerSize">50%</item>
+    </style>
+</resources>
