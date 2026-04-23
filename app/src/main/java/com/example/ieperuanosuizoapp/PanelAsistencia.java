@@ -52,7 +52,7 @@ public class PanelAsistencia extends AppCompatActivity {
     private ConstraintLayout mainLayout;
     private View cameraContainer, layoutEmptyState, layoutPaginacion, dividerPaginacion;
     private EditText etBuscador;
-    private RecyclerView rvAlumnos;
+    private RecyclerView rvAlumnos, rvAlumnosSearch;
     private TextView tvPaginationInfo;
     private ImageButton btnPagePrev, btnPageNext;
 
@@ -75,6 +75,7 @@ public class PanelAsistencia extends AppCompatActivity {
         cameraContainer = findViewById(R.id.camera_container);
         etBuscador = findViewById(R.id.et_buscador);
         rvAlumnos = findViewById(R.id.rv_alumnos);
+        rvAlumnosSearch = findViewById(R.id.rv_alumnos_search);
         layoutEmptyState = findViewById(R.id.layout_empty_state);
         layoutPaginacion = findViewById(R.id.layout_paginacion);
         dividerPaginacion = findViewById(R.id.divider_paginacion);
@@ -82,8 +83,8 @@ public class PanelAsistencia extends AppCompatActivity {
         btnPagePrev = findViewById(R.id.btn_page_prev);
         btnPageNext = findViewById(R.id.btn_page_next);
 
-        // Inicializar RecyclerView
         rvAlumnos.setLayoutManager(new LinearLayoutManager(this));
+        rvAlumnosSearch.setLayoutManager(new LinearLayoutManager(this));
 
         // Datos de prueba
         generarDatosPrueba();
@@ -235,17 +236,14 @@ public class PanelAsistencia extends AppCompatActivity {
         boolean isSearching = etBuscador.hasFocus() || hasQuery;
 
         if (isSearching && !hasSalon) {
-            // MODO BUSCADOR (En vivo): Solo presentes que coincidan con el nombre
             listaFiltrada = listaCompleta.stream()
                     .filter(a -> a.nombre.toLowerCase().contains(query) && a.hora != null && !a.hora.isEmpty())
                     .collect(Collectors.toList());
         } else if (hasSalon) {
-            // MODO SELECT (Salón): Todos los alumnos del salón (Presentes y Ausentes)
             listaFiltrada = listaCompleta.stream()
                     .filter(a -> a.fecha.equals(salon) && (query.isEmpty() || a.nombre.toLowerCase().contains(query)))
                     .collect(Collectors.toList());
         } else {
-            // MODO NORMAL (Al entrar): Solo alumnos que marcaron asistencia (Presentes)
             listaFiltrada = listaCompleta.stream()
                     .filter(a -> a.hora != null && !a.hora.isEmpty())
                     .collect(Collectors.toList());
@@ -254,22 +252,27 @@ public class PanelAsistencia extends AppCompatActivity {
         int totalItems = listaFiltrada.size();
         if (totalItems == 0) {
             rvAlumnos.setVisibility(View.GONE);
+            rvAlumnosSearch.setVisibility(View.GONE);
             layoutEmptyState.setVisibility(View.VISIBLE);
             layoutPaginacion.setVisibility(View.GONE);
             dividerPaginacion.setVisibility(View.GONE);
             return;
         }
 
-        rvAlumnos.setVisibility(View.VISIBLE);
         layoutEmptyState.setVisibility(View.GONE);
 
-        // Sin paginación si se está buscando o si hay un salón seleccionado
         if (isSearching || hasSalon) {
+            rvAlumnos.setVisibility(View.GONE);
+            rvAlumnosSearch.setVisibility(View.VISIBLE);
+            rvAlumnosSearch.setAdapter(adapter);
             adapter.updateList(listaFiltrada);
             layoutPaginacion.setVisibility(View.GONE);
             dividerPaginacion.setVisibility(View.GONE);
         } else {
-            // Paginación solo en el estado inicial "limpio"
+            rvAlumnos.setVisibility(View.VISIBLE);
+            rvAlumnosSearch.setVisibility(View.GONE);
+            rvAlumnos.setAdapter(adapter);
+
             int inicio = (paginaActual - 1) * itemsPorPagina;
             int fin = Math.min(inicio + itemsPorPagina, totalItems);
             adapter.updateList(listaFiltrada.subList(inicio, fin));
@@ -310,7 +313,7 @@ public class PanelAsistencia extends AppCompatActivity {
         autoCompleteSalon.setAdapter(adapter);
         autoCompleteSalon.setKeyListener(null);
         autoCompleteSalon.setOnItemClickListener((parent, view, position, id) -> {
-            showSearchMode(); // Aseguramos que se mantenga el modo expandido al seleccionar salón
+            showSearchMode();
             aplicarFiltros();
         });
     }
