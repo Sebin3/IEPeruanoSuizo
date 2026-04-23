@@ -402,7 +402,7 @@
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
+        android:background="?attr/bottomNavBackground"
         app:elevation="0dp"
         app:labelVisibilityMode="unlabeled"
         app:menu="@menu/bottom_nav_menu"

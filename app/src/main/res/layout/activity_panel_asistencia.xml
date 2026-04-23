@@ -314,8 +314,8 @@
 
                         <ImageButton
                             android:id="@+id/btn_page_prev"
-                            android:layout_width="35dp"
-                            android:layout_height="35dp"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
                             android:background="@drawable/bg_card_dynamic"
                             android:backgroundTint="?attr/homeContentBackground"
                             android:src="@drawable/righticon"
@@ -358,7 +358,7 @@
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?android:attr/windowBackground"
+        android:background="?attr/bottomNavBackground"
         app:elevation="0dp"
         app:labelVisibilityMode="unlabeled"
         app:menu="@menu/bottom_nav_menu"

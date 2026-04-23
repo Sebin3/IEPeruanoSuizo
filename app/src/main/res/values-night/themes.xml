@@ -12,5 +12,6 @@
         <!-- Compatibilidad con vistas estándar -->
         <item name="android:windowBackground">#000000</item>
         <item name="android:textColorPrimary">#FFFFFF</item>
+        <item name="bottomNavBackground">#000000</item>
     </style>
 </resources>

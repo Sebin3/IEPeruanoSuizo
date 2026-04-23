@@ -1,11 +1,14 @@
 package com.example.ieperuanosuizoapp;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.TypedValue;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -21,6 +24,7 @@ import android.widget.Toast;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.camera.core.CameraSelector;
 import androidx.camera.core.Preview;
 import androidx.camera.lifecycle.ProcessCameraProvider;
@@ -64,6 +68,22 @@ public class PanelAsistencia extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // Cargar tema antes de super.onCreate para evitar parpadeo
+        SharedPreferences prefs = getSharedPreferences("theme_prefs", MODE_PRIVATE);
+        boolean isDarkMode = prefs.getBoolean("isDarkMode", false);
+        int colorScheme = prefs.getInt("colorScheme", 0);
+
+        if (isDarkMode) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        } else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        }
+
+        // Aplicar el esquema de color si es el verde (esquema 2)
+        if (colorScheme == 2) {
+            setTheme(R.style.Theme_IEPeruanoSuizoAPP_Green);
+        }
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_panel_asistencia);
 
@@ -139,16 +159,29 @@ public class PanelAsistencia extends AppCompatActivity {
     }
 
     private void setupBottomNavigation(BottomNavigationView bottomNav) {
+        // Obtener color seleccionado del tema
+        int colorSeleccionado;
+        TypedValue typedValue = new TypedValue();
+        if (getTheme().resolveAttribute(androidx.appcompat.R.attr.colorPrimary, typedValue, true)) {
+            colorSeleccionado = typedValue.data;
+        } else {
+            colorSeleccionado = Color.parseColor("#BA1924");
+        }
+
         int[][] states = new int[][]{
                 new int[]{android.R.attr.state_checked},
                 new int[]{-android.R.attr.state_checked}
         };
         int[] colors = new int[]{
-                Color.parseColor("#BA1924"),
+                colorSeleccionado,
                 Color.parseColor("#5E5F60")
         };
         ColorStateList navTint = new ColorStateList(states, colors);
         bottomNav.setItemIconTintList(navTint);
+        bottomNav.setItemTextColor(navTint);
+
+        // Siempre seleccionar los 3 puntos (nav_more)
+        bottomNav.setSelectedItemId(R.id.nav_more);
 
         bottomNav.setOnItemSelectedListener(item -> {
             int id = item.getItemId();
@@ -162,6 +195,8 @@ public class PanelAsistencia extends AppCompatActivity {
                 Intent intent = new Intent(this, CursosActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
+                return true;
+            } else if (id == R.id.nav_more) {
                 return true;
             }
             return true;

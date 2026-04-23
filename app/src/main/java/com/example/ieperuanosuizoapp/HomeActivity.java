@@ -6,6 +6,7 @@ import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.Outline;
 import android.os.Bundle;
+import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewOutlineProvider;
 import android.widget.ImageView;
@@ -35,10 +36,17 @@ public class HomeActivity extends AppCompatActivity {
         // Cargar tema antes de super.onCreate para evitar parpadeo
         SharedPreferences prefs = getSharedPreferences("theme_prefs", MODE_PRIVATE);
         boolean isDarkMode = prefs.getBoolean("isDarkMode", false);
+        int colorScheme = prefs.getInt("colorScheme", 0);
+
         if (isDarkMode) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
         } else {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        }
+
+        // Aplicar el esquema de color si es el verde (esquema 2)
+        if (colorScheme == 2) {
+            setTheme(R.style.Theme_IEPeruanoSuizoAPP_Green);
         }
 
         super.onCreate(savedInstanceState);
@@ -94,42 +102,50 @@ public class HomeActivity extends AppCompatActivity {
 
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
 
-        // 1. Definimos el tinte: Rojo (#BA1924) para seleccionado, Gris (#5E5F60) para normal
+        // 1. Obtener color del Drawer (Verde Oscuro en Scheme Green)
+        int colorSeleccionado;
+        TypedValue typedValue = new TypedValue();
+        if (getTheme().resolveAttribute(R.attr.drawerBackground, typedValue, true)) {
+            colorSeleccionado = typedValue.data;
+        } else {
+            colorSeleccionado = Color.parseColor("#BA1924"); // Fallback rojo
+        }
+
         int[][] states = new int[][]{
                 new int[]{android.R.attr.state_checked},
                 new int[]{-android.R.attr.state_checked}
         };
         int[] colors = new int[]{
-                Color.parseColor("#BA1924"),
+                colorSeleccionado,
                 Color.parseColor("#5E5F60")
         };
         ColorStateList navTint = new ColorStateList(states, colors);
 
-        // 2. Estado inicial: Aplicamos tinte gris y desmarcamos todo
+        // 2. Estado inicial
         bottomNav.setItemIconTintList(navTint);
+        bottomNav.setItemTextColor(navTint);
         bottomNav.getMenu().setGroupCheckable(0, false, true);
         bottomNav.getMenu().getItem(0).setChecked(false);
 
         bottomNav.setOnItemSelectedListener(item -> {
-            // Habilitamos la selección al tocar
             bottomNav.getMenu().setGroupCheckable(0, true, true);
-
-            // Siempre reseteamos el icono de Home al gris original
             bottomNav.getMenu().findItem(R.id.nav_home).setIcon(R.drawable.ic_home);
 
             if (item.getItemId() == R.id.nav_home) {
-                // TRUCO: Quitamos el tinte para que se vea el rojo y blanco de tu ic_homepress
-                bottomNav.setItemIconTintList(null);
+                // Para el Home presionado, aplicamos el tinte dinámico si es verde
+                if (colorScheme == 2) {
+                    bottomNav.setItemIconTintList(navTint);
+                } else {
+                    bottomNav.setItemIconTintList(null);
+                }
                 item.setIcon(R.drawable.ic_homepress);
             } else if (item.getItemId() == R.id.nav_homework) {
-                // Abrir pantalla de Cursos
                 android.content.Intent intent = new android.content.Intent(this, CursosActivity.class);
                 intent.addFlags(android.content.Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
                 overridePendingTransition(0, 0);
                 return true;
             } else {
-                // Para los otros, aplicamos el tinte que los pone rojos
                 bottomNav.setItemIconTintList(navTint);
             }
 
@@ -145,13 +161,11 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void setupPerspectiveDrawer() {
-        drawerLayout.setScrimColor(Color.TRANSPARENT); // Quitar la sombra negra
+        drawerLayout.setScrimColor(Color.TRANSPARENT);
 
-        // Configurar el OutlineProvider para esquinas redondeadas
         mainContent.setOutlineProvider(new ViewOutlineProvider() {
             @Override
             public void getOutline(View view, Outline outline) {
-                // Radio de 30dp (puedes ajustarlo)
                 float radius = 80f;
                 outline.setRoundRect(0, 0, view.getWidth(), view.getHeight(), radius);
             }
@@ -160,20 +174,16 @@ public class HomeActivity extends AppCompatActivity {
         drawerLayout.addDrawerListener(new DrawerLayout.SimpleDrawerListener() {
             @Override
             public void onDrawerSlide(View drawerView, float slideOffset) {
-                // Escalar el contenido principal
                 float scaleFactor = 1f - (slideOffset * 0.15f);
                 mainContent.setScaleX(scaleFactor);
                 mainContent.setScaleY(scaleFactor);
 
-                // Mover el contenido hacia la derecha
                 float xOffset = drawerView.getWidth() * slideOffset * 0.7f;
                 mainContent.setTranslationX(xOffset);
 
-                // Activar el recorte de esquinas solo cuando se desliza
                 mainContent.setClipToOutline(slideOffset > 0);
-                mainContent.setElevation(slideOffset * 20); // Sombra para profundidad
+                mainContent.setElevation(slideOffset * 20);
 
-                // Animación de "conversión" suave (Fade + Swap)
                 float iconAlpha = Math.abs(slideOffset - 0.5f) * 2;
                 ivMenuIcon.setAlpha(iconAlpha);
                 ivMenuIcon.setScaleX(0.8f + (iconAlpha * 0.2f));
@@ -196,8 +206,6 @@ public class HomeActivity extends AppCompatActivity {
 
     private void updateDailyInfo() {
         Calendar calendar = Calendar.getInstance();
-
-        // Saludo dinámico según la hora
         int hour = calendar.get(Calendar.HOUR_OF_DAY);
         String greeting;
         if (hour >= 6 && hour < 12) {
@@ -209,7 +217,6 @@ public class HomeActivity extends AppCompatActivity {
         }
         tvGreeting.setText(greeting);
 
-        // Formatear fecha actual
         SimpleDateFormat dayFormat = new SimpleDateFormat("d", Locale.getDefault());
         SimpleDateFormat dayNameFormat = new SimpleDateFormat("EEEE", new Locale("es", "PE"));
         SimpleDateFormat monthYearFormat = new SimpleDateFormat("MMMM yyyy", new Locale("es", "PE"));
@@ -218,7 +225,6 @@ public class HomeActivity extends AppCompatActivity {
         String dayName = dayNameFormat.format(calendar.getTime());
         String monthYear = monthYearFormat.format(calendar.getTime());
 
-        // Capitalizar primera letra
         dayName = dayName.substring(0, 1).toUpperCase() + dayName.substring(1);
         monthYear = monthYear.substring(0, 1).toUpperCase() + monthYear.substring(1);
 
@@ -226,24 +232,20 @@ public class HomeActivity extends AppCompatActivity {
         tvDayName.setText(dayName);
         tvMonthYear.setText(monthYear);
 
-        // Lógica de Celebraciones (Ejemplo)
         int day = calendar.get(Calendar.DAY_OF_MONTH);
-        int month = calendar.get(Calendar.MONTH) + 1; // Enero es 0
+        int month = calendar.get(Calendar.MONTH) + 1;
 
         String celebrationText = "";
-        int illustrationRes = R.drawable.diamundial; // Imagen por defecto
+        int illustrationRes = R.drawable.diamundial;
 
-        // Ejemplo: Día de la Tierra (22 de Abril)
         if (day == 22 && month == 4) {
             celebrationText = "Día Mundial de la Tierra";
-            // illustrationRes = R.drawable.dia_tierra; // Cambiar por la imagen real
         } else if (day == 1 && month == 5) {
             celebrationText = "Día del Trabajador";
         } else if (day == 7 && month == 6) {
             celebrationText = "Día de la Bandera";
         }
 
-        // Mostrar o esconder el texto de celebración
         if (celebrationText.isEmpty()) {
             tvCelebration.setVisibility(View.GONE);
         } else {
@@ -251,28 +253,15 @@ public class HomeActivity extends AppCompatActivity {
             tvCelebration.setText(celebrationText);
         }
 
-        // Lógica de imágenes por día de la semana (Lunes a Viernes)
-        if (celebrationText.isEmpty()) { // Solo si no hay una celebración especial
+        if (celebrationText.isEmpty()) {
             int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
             switch (dayOfWeek) {
-                case Calendar.MONDAY:
-                    illustrationRes = R.drawable.pibblepruebaportada;
-                    break;
-                case Calendar.TUESDAY:
-                    illustrationRes = R.drawable.diamundial;
-                    break;
-                case Calendar.WEDNESDAY:
-                    illustrationRes = R.drawable.diamundial;
-                    break;
-                case Calendar.THURSDAY:
-                    illustrationRes = R.drawable.diamundial;
-                    break;
-                case Calendar.FRIDAY:
-                    illustrationRes = R.drawable.diamundial;
-                    break;
-                default:
-                    illustrationRes = R.drawable.portadaimagenprueba; // Fin de semana
-                    break;
+                case Calendar.MONDAY: illustrationRes = R.drawable.pibblepruebaportada; break;
+                case Calendar.TUESDAY: illustrationRes = R.drawable.diamundial; break;
+                case Calendar.WEDNESDAY: illustrationRes = R.drawable.diamundial; break;
+                case Calendar.THURSDAY: illustrationRes = R.drawable.diamundial; break;
+                case Calendar.FRIDAY: illustrationRes = R.drawable.diamundial; break;
+                default: illustrationRes = R.drawable.portadaimagenprueba; break;
             }
         }
 

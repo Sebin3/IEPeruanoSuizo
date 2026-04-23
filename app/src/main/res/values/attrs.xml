@@ -6,4 +6,6 @@
     <attr name="homeTextColorSebastian" format="color" />
     <attr name="homeTextColorTitles" format="color" />
     <attr name="homeTextColorCardLabel" format="color" />
+    <attr name="drawerBackground" format="color" />
+    <attr name="bottomNavBackground" format="color" />
 </resources>
