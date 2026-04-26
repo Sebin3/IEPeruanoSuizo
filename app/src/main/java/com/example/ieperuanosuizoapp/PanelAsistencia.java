@@ -8,6 +8,7 @@ import android.content.pm.PackageManager;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.TypedValue;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -40,8 +41,11 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.button.MaterialButton;
 import com.google.common.util.concurrent.ListenableFuture;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 import java.util.concurrent.ExecutionException;
 import java.util.stream.Collectors;
 
@@ -60,15 +64,21 @@ public class PanelAsistencia extends AppCompatActivity {
     private TextView tvPaginationInfo;
     private ImageButton btnPagePrev, btnPageNext;
 
+    private View modalExito;
+    private TextView tvModalBienvenida;
+
     private AlumnoAdapter adapter;
     private List<Alumno> listaCompleta = new ArrayList<>();
+    private List<Alumno> listaActiva = new ArrayList<>(); 
     private List<Alumno> listaFiltrada = new ArrayList<>();
     private int paginaActual = 1;
     private final int itemsPorPagina = 3;
 
+    private final Handler simulationHandler = new Handler();
+    private int simulacionIndex = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        // Cargar tema antes de super.onCreate para evitar parpadeo
         SharedPreferences prefs = getSharedPreferences("theme_prefs", MODE_PRIVATE);
         boolean isDarkMode = prefs.getBoolean("isDarkMode", false);
         int colorScheme = prefs.getInt("colorScheme", 0);
@@ -79,7 +89,6 @@ public class PanelAsistencia extends AppCompatActivity {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         }
 
-        // Aplicar el esquema de color si es el verde (esquema 2)
         if (colorScheme == 2) {
             setTheme(R.style.Theme_IEPeruanoSuizoAPP_Green);
         }
@@ -87,7 +96,6 @@ public class PanelAsistencia extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_panel_asistencia);
 
-        // Inicializar vistas
         mainLayout = findViewById(R.id.main);
         previewView = findViewById(R.id.previewView);
         btnActivarCamara = findViewById(R.id.btn_activar_camara);
@@ -102,36 +110,24 @@ public class PanelAsistencia extends AppCompatActivity {
         tvPaginationInfo = findViewById(R.id.tv_pagination_info);
         btnPagePrev = findViewById(R.id.btn_page_prev);
         btnPageNext = findViewById(R.id.btn_page_next);
+        modalExito = findViewById(R.id.modal_exito);
+        tvModalBienvenida = findViewById(R.id.tv_modal_bienvenida);
 
         rvAlumnos.setLayoutManager(new LinearLayoutManager(this));
         rvAlumnosSearch.setLayoutManager(new LinearLayoutManager(this));
 
-        // Datos de prueba
-        generarDatosPrueba();
+        generarDatosMaestros();
 
-        // Configurar Adapter
         adapter = new AlumnoAdapter(new ArrayList<>());
         rvAlumnos.setAdapter(adapter);
 
-        // Configurar Paginación
         setupPaginacion();
-
-        // Configurar Selector de Salón
         setupSalonSelector();
-
-        // Configurar Animación del Buscador
         setupSearchAnimation();
-
-        // Mostrar tabla
         actualizarVistaTabla();
 
-        // Configurar botón de atrás
         findViewById(R.id.btn_back).setOnClickListener(v -> {
-            String query = etBuscador.getText().toString();
-            String salon = autoCompleteSalon.getText().toString();
-
-            // Si hay algo filtrado o el buscador tiene el foco, primero limpiamos
-            if (etBuscador.hasFocus() || !query.isEmpty() || !salon.equals("Salon")) {
+            if (etBuscador.hasFocus() || !etBuscador.getText().toString().isEmpty() || !autoCompleteSalon.getText().toString().equals("Salon")) {
                 etBuscador.setText("");
                 autoCompleteSalon.setText("Salon", false);
                 hideSearchMode();
@@ -140,126 +136,79 @@ public class PanelAsistencia extends AppCompatActivity {
             }
         });
 
-        // --- Lógica de la Cámara ---
         requestPermissionLauncher = registerForActivityResult(
                 new ActivityResultContracts.RequestPermission(),
                 isGranted -> {
-                    if (isGranted) {
-                        toggleCamera();
-                    } else {
-                        Toast.makeText(this, "Permiso de cámara denegado", Toast.LENGTH_SHORT).show();
-                    }
+                    if (isGranted) toggleCamera();
+                    else Toast.makeText(this, "Permiso denegado", Toast.LENGTH_SHORT).show();
                 }
         );
 
         btnActivarCamara.setOnClickListener(v -> checkCameraPermission());
-
-        // --- Configuración del BottomNavigationView ---
         setupBottomNavigation(findViewById(R.id.bottom_navigation));
+
+        iniciarSimulacionEscaneo();
     }
 
-    private void setupBottomNavigation(BottomNavigationView bottomNav) {
-        // Obtener color seleccionado del tema
-        int colorSeleccionado;
-        TypedValue typedValue = new TypedValue();
-        if (getTheme().resolveAttribute(androidx.appcompat.R.attr.colorPrimary, typedValue, true)) {
-            colorSeleccionado = typedValue.data;
-        } else {
-            colorSeleccionado = Color.parseColor("#BA1924");
-        }
+    private void iniciarSimulacionEscaneo() {
+        // Crear una lista de escaneo aleatoria con solo algunos alumnos (Simular ausentismo)
+        List<Alumno> poolEscaneo = new ArrayList<>(listaCompleta);
+        java.util.Collections.shuffle(poolEscaneo);
+        
+        // Solo el 60% de los alumnos asistirán hoy
+        int limiteAsistencia = (int) (poolEscaneo.size() * 0.6);
+        List<Alumno> alumnosQueAsistiran = poolEscaneo.subList(0, limiteAsistencia);
 
-        int[][] states = new int[][]{
-                new int[]{android.R.attr.state_checked},
-                new int[]{-android.R.attr.state_checked}
-        };
-        int[] colors = new int[]{
-                colorSeleccionado,
-                Color.parseColor("#5E5F60")
-        };
-        ColorStateList navTint = new ColorStateList(states, colors);
-        bottomNav.setItemIconTintList(navTint);
-        bottomNav.setItemTextColor(navTint);
+        simulationHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (simulacionIndex < alumnosQueAsistiran.size()) {
+                    Alumno alumno = alumnosQueAsistiran.get(simulacionIndex);
+                    
+                    // Marcar como presente con la hora actual
+                    SimpleDateFormat sdf = new SimpleDateFormat("hh:mm a", Locale.getDefault());
+                    alumno.hora = sdf.format(Calendar.getInstance().getTime());
+                    
+                    simulacionIndex++;
 
-        // Siempre seleccionar los 3 puntos (nav_more)
-        bottomNav.setSelectedItemId(R.id.nav_more);
+                    registrarAlumnoEnVivo(alumno);
+                    mostrarModalExito(alumno.nombre);
 
-        bottomNav.setOnItemSelectedListener(item -> {
-            int id = item.getItemId();
-            if (id == R.id.nav_home) {
-                Intent intent = new Intent(this, HomeActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                startActivity(intent);
-                finish();
-                return true;
-            } else if (id == R.id.nav_homework) {
-                Intent intent = new Intent(this, CursosActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                startActivity(intent);
-                return true;
-            } else if (id == R.id.nav_more) {
-                return true;
+                    // Programar siguiente escaneo
+                    simulationHandler.postDelayed(this, 10000);
+                }
             }
-            return true;
-        });
+        }, 10000);
     }
 
-    private void setupSearchAnimation() {
-        etBuscador.setOnFocusChangeListener((v, hasFocus) -> {
-            if (hasFocus) {
-                showSearchMode();
-            }
-            // Eliminamos el hideSearchMode automático al perder foco para que no se cierre al tocar el salón
-        });
-
-        etBuscador.addTextChangedListener(new TextWatcher() {
-            @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
-            @Override public void onTextChanged(CharSequence s, int start, int before, int count) {
-                aplicarFiltros();
-            }
-            @Override public void afterTextChanged(Editable s) {}
-        });
-    }
-
-    private void aplicarFiltros() {
-        paginaActual = 1;
+    private void registrarAlumnoEnVivo(Alumno alumno) {
+        listaActiva.add(0, alumno);
         actualizarVistaTabla();
     }
 
-    private void generarDatosPrueba() {
-        // Estudiantes para 1ro A
-        listaCompleta.add(new Alumno("Carlos Ramos", "1ro A", "06:50 am"));
-        listaCompleta.add(new Alumno("Lucia Mendoza", "1ro A", "06:50 am"));
-        listaCompleta.add(new Alumno("Andres Quispe", "1ro A", "06:51 am"));
-        listaCompleta.add(new Alumno("Maria Jose", "1ro A", null)); // Ausente
-        listaCompleta.add(new Alumno("Roberto Gomez", "1ro A", "07:10 am"));
-        listaCompleta.add(new Alumno("Elena Torres", "1ro A", null)); // Ausente
-        listaCompleta.add(new Alumno("Juan Perez", "1ro A", "07:05 am"));
-        listaCompleta.add(new Alumno("Sofia Castro", "1ro A", "06:45 am"));
-        listaCompleta.add(new Alumno("Diego Salas", "1ro A", null)); // Ausente
-        listaCompleta.add(new Alumno("Laura Luna", "1ro A", "07:15 am"));
+    private void mostrarModalExito(String nombre) {
+        tvModalBienvenida.setText("Bienvenido, " + nombre);
+        modalExito.bringToFront();
+        modalExito.setVisibility(View.VISIBLE);
+        modalExito.setTranslationY(1500f); 
 
-        // Otros salones
-        listaCompleta.add(new Alumno("Pedro Picapiedra", "2do B", "07:00 am"));
-        listaCompleta.add(new Alumno("Vilma Palma", "2do B", null));
-
-        listaFiltrada = new ArrayList<>(listaCompleta);
+        modalExito.animate()
+                .translationY(0f) 
+                .setDuration(600)
+                .withEndAction(() -> {
+                    new Handler().postDelayed(() -> {
+                        ocultarModalExito();
+                    }, 5000);
+                })
+                .start();
     }
 
-    private void setupPaginacion() {
-        btnPagePrev.setOnClickListener(v -> {
-            if (paginaActual > 1) {
-                paginaActual--;
-                actualizarVistaTabla();
-            }
-        });
-
-        btnPageNext.setOnClickListener(v -> {
-            int totalPaginas = (int) Math.ceil((double) listaFiltrada.size() / itemsPorPagina);
-            if (paginaActual < totalPaginas) {
-                paginaActual++;
-                actualizarVistaTabla();
-            }
-        });
+    private void ocultarModalExito() {
+        modalExito.animate()
+                .translationY(1500f)
+                .setDuration(600)
+                .withEndAction(() -> modalExito.setVisibility(View.INVISIBLE))
+                .start();
     }
 
     private void actualizarVistaTabla() {
@@ -271,17 +220,15 @@ public class PanelAsistencia extends AppCompatActivity {
         boolean isSearching = etBuscador.hasFocus() || hasQuery;
 
         if (isSearching && !hasSalon) {
-            listaFiltrada = listaCompleta.stream()
-                    .filter(a -> a.nombre.toLowerCase().contains(query) && a.hora != null && !a.hora.isEmpty())
+            listaFiltrada = listaActiva.stream()
+                    .filter(a -> a.nombre.toLowerCase().contains(query))
                     .collect(Collectors.toList());
         } else if (hasSalon) {
             listaFiltrada = listaCompleta.stream()
                     .filter(a -> a.fecha.equals(salon) && (query.isEmpty() || a.nombre.toLowerCase().contains(query)))
                     .collect(Collectors.toList());
         } else {
-            listaFiltrada = listaCompleta.stream()
-                    .filter(a -> a.hora != null && !a.hora.isEmpty())
-                    .collect(Collectors.toList());
+            listaFiltrada = new ArrayList<>(listaActiva);
         }
 
         int totalItems = listaFiltrada.size();
@@ -316,8 +263,7 @@ public class PanelAsistencia extends AppCompatActivity {
                 layoutPaginacion.setVisibility(View.VISIBLE);
                 dividerPaginacion.setVisibility(View.VISIBLE);
                 int totalPaginas = (int) Math.ceil((double) totalItems / itemsPorPagina);
-                String info = "Pagina " + paginaActual + " de " + totalPaginas;
-                tvPaginationInfo.setText(info);
+                tvPaginationInfo.setText("Pagina " + paginaActual + " de " + totalPaginas);
                 btnPagePrev.setEnabled(paginaActual > 1);
                 btnPageNext.setEnabled(paginaActual < totalPaginas);
             } else {
@@ -325,6 +271,84 @@ public class PanelAsistencia extends AppCompatActivity {
                 dividerPaginacion.setVisibility(View.GONE);
             }
         }
+    }
+
+    private void generarDatosMaestros() {
+        // 1ro A
+        listaCompleta.add(new Alumno("Carlos Ramos", "1ro A", null));
+        listaCompleta.add(new Alumno("Lucia Mendoza", "1ro A", null));
+        listaCompleta.add(new Alumno("Andres Quispe", "1ro A", null));
+        listaCompleta.add(new Alumno("Sebastian Perez", "1ro A", null));
+
+        // 2do B
+        listaCompleta.add(new Alumno("Roberto Gomez", "2do B", null));
+        listaCompleta.add(new Alumno("Juan Perez", "2do B", null));
+        listaCompleta.add(new Alumno("Diego Salas", "2do B", null));
+        listaCompleta.add(new Alumno("Maria Garcia", "2do B", null));
+
+        // 3ro C
+        listaCompleta.add(new Alumno("Elena Torres", "3ro C", null));
+        listaCompleta.add(new Alumno("Pedro Picapiedra", "3ro C", null));
+        listaCompleta.add(new Alumno("Vilma Palma", "3ro C", null));
+        listaCompleta.add(new Alumno("Pablo Marmol", "3ro C", null));
+
+        // 4to A
+        listaCompleta.add(new Alumno("Ricardo Huaman", "4to A", null));
+        listaCompleta.add(new Alumno("Josue Ochoa", "4to A", null));
+        listaCompleta.add(new Alumno("Ana Lima", "4to A", null));
+        listaCompleta.add(new Alumno("Luis Prado", "4to A", null));
+
+        // 5to B
+        listaCompleta.add(new Alumno("Sofia Castro", "5to B", null));
+        listaCompleta.add(new Alumno("Laura Luna", "5to B", null));
+        listaCompleta.add(new Alumno("Jorge Chavez", "5to B", null));
+        listaCompleta.add(new Alumno("Carmen Rosa", "5to B", null));
+    }
+
+    private void setupBottomNavigation(BottomNavigationView bottomNav) {
+        int colorSeleccionado;
+        TypedValue typedValue = new TypedValue();
+        if (getTheme().resolveAttribute(androidx.appcompat.R.attr.colorPrimary, typedValue, true)) {
+            colorSeleccionado = typedValue.data;
+        } else {
+            colorSeleccionado = Color.parseColor("#BA1924");
+        }
+
+        int[][] states = new int[][]{ new int[]{android.R.attr.state_checked}, new int[]{-android.R.attr.state_checked} };
+        int[] colors = new int[]{ colorSeleccionado, Color.parseColor("#5E5F60") };
+        ColorStateList navTint = new ColorStateList(states, colors);
+        bottomNav.setItemIconTintList(navTint);
+        bottomNav.setItemTextColor(navTint);
+        bottomNav.setSelectedItemId(R.id.nav_more);
+
+        bottomNav.setOnItemSelectedListener(item -> {
+            int id = item.getItemId();
+            if (id == R.id.nav_home) {
+                startActivity(new Intent(this, HomeActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+                finish();
+                return true;
+            }
+            return true;
+        });
+    }
+
+    private void setupSearchAnimation() {
+        etBuscador.setOnFocusChangeListener((v, hasFocus) -> { if (hasFocus) showSearchMode(); });
+        etBuscador.addTextChangedListener(new TextWatcher() {
+            @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            @Override public void onTextChanged(CharSequence s, int start, int before, int count) {
+                paginaActual = 1; actualizarVistaTabla();
+            }
+            @Override public void afterTextChanged(Editable s) {}
+        });
+    }
+
+    private void setupPaginacion() {
+        btnPagePrev.setOnClickListener(v -> { if (paginaActual > 1) { paginaActual--; actualizarVistaTabla(); } });
+        btnPageNext.setOnClickListener(v -> {
+            int totalPaginas = (int) Math.ceil((double) listaFiltrada.size() / itemsPorPagina);
+            if (paginaActual < totalPaginas) { paginaActual++; actualizarVistaTabla(); }
+        });
     }
 
     private void showSearchMode() {
@@ -344,46 +368,32 @@ public class PanelAsistencia extends AppCompatActivity {
 
     private void setupSalonSelector() {
         String[] salones = {"1ro A", "2do B", "3ro C", "4to A", "5to B"};
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, salones);
-        autoCompleteSalon.setAdapter(adapter);
-        autoCompleteSalon.setKeyListener(null);
-        autoCompleteSalon.setOnItemClickListener((parent, view, position, id) -> {
-            showSearchMode();
-            aplicarFiltros();
-        });
+        autoCompleteSalon.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, salones));
+        autoCompleteSalon.setOnItemClickListener((parent, view, position, id) -> { showSearchMode(); actualizarVistaTabla(); });
     }
 
     private void checkCameraPermission() {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
-            toggleCamera();
-        } else {
-            requestPermissionLauncher.launch(Manifest.permission.CAMERA);
-        }
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) toggleCamera();
+        else requestPermissionLauncher.launch(Manifest.permission.CAMERA);
     }
 
-    private void toggleCamera() {
-        if (isCameraActive) stopCamera();
-        else startCamera();
-    }
+    private void toggleCamera() { if (isCameraActive) stopCamera(); else startCamera(); }
 
     private void startCamera() {
-        ListenableFuture<ProcessCameraProvider> cameraProviderFuture = ProcessCameraProvider.getInstance(this);
-        cameraProviderFuture.addListener(() -> {
+        ListenableFuture<ProcessCameraProvider> future = ProcessCameraProvider.getInstance(this);
+        future.addListener(() -> {
             try {
-                cameraProvider = cameraProviderFuture.get();
-                CameraSelector cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA;
+                cameraProvider = future.get();
                 Preview preview = new Preview.Builder().build();
                 preview.setSurfaceProvider(previewView.getSurfaceProvider());
                 cameraProvider.unbindAll();
-                cameraProvider.bindToLifecycle(this, cameraSelector, preview);
+                cameraProvider.bindToLifecycle(this, CameraSelector.DEFAULT_BACK_CAMERA, preview);
                 previewView.setVisibility(View.VISIBLE);
                 isCameraActive = true;
                 btnActivarCamara.setText("Desactivar Camara");
                 btnActivarCamara.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#F5F5F5")));
                 btnActivarCamara.setTextColor(Color.BLACK);
-            } catch (ExecutionException | InterruptedException e) {
-                Toast.makeText(this, "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-            }
+            } catch (Exception e) { Toast.makeText(this, "Error cámara", Toast.LENGTH_SHORT).show(); }
         }, ContextCompat.getMainExecutor(this));
     }
 
@@ -400,26 +410,17 @@ public class PanelAsistencia extends AppCompatActivity {
 
     static class Alumno {
         String nombre, fecha, hora;
-        Alumno(String nombre, String fecha, String hora) {
-            this.nombre = nombre;
-            this.fecha = fecha;
-            this.hora = hora;
-        }
+        Alumno(String nombre, String fecha, String hora) { this.nombre = nombre; this.fecha = fecha; this.hora = hora; }
     }
 
     class AlumnoAdapter extends RecyclerView.Adapter<AlumnoAdapter.ViewHolder> {
         private List<Alumno> alumnos;
         AlumnoAdapter(List<Alumno> alumnos) { this.alumnos = alumnos; }
         void updateList(List<Alumno> newList) { this.alumnos = newList; notifyDataSetChanged(); }
-
-        @Override
-        public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_alumno_asistencia, parent, false);
-            return new ViewHolder(v);
+        @Override public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_alumno_asistencia, parent, false));
         }
-
-        @Override
-        public void onBindViewHolder(ViewHolder holder, int position) {
+        @Override public void onBindViewHolder(ViewHolder holder, int position) {
             Alumno a = alumnos.get(position);
             holder.tvNombre.setText(a.nombre);
             holder.tvFecha.setText(a.fecha);
@@ -431,10 +432,7 @@ public class PanelAsistencia extends AppCompatActivity {
                 holder.tvHora.setTextColor(Color.parseColor("#27AE60"));
             }
         }
-
-        @Override
-        public int getItemCount() { return alumnos.size(); }
-
+        @Override public int getItemCount() { return alumnos.size(); }
         class ViewHolder extends RecyclerView.ViewHolder {
             TextView tvNombre, tvFecha, tvHora;
             ViewHolder(View v) {
@@ -444,5 +442,11 @@ public class PanelAsistencia extends AppCompatActivity {
                 tvHora = v.findViewById(R.id.tv_estado_entrada);
             }
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        simulationHandler.removeCallbacksAndMessages(null);
     }
 }
