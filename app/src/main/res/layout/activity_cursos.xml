@@ -5,12 +5,11 @@
     android:id="@+id/main_cursos"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="?attr/homeHeaderBackground"
     tools:context=".CursosActivity">
 
-    <!-- Header Section -->
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/header_cursos"
+        android:id="@+id/header_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingHorizontal="24dp"
@@ -22,53 +21,52 @@
             android:id="@+id/btn_back"
             android:layout_width="45dp"
             android:layout_height="45dp"
-            app:cardBackgroundColor="#F6F6F6"
-            app:cardCornerRadius="12dp"
+            app:cardBackgroundColor="?attr/homeContentBackground"
+            app:cardCornerRadius="15dp"
             app:cardElevation="0dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:clickable="true"
+            android:focusable="true"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
 
             <ImageView
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_gravity="center"
-                android:rotation="180"
-                android:src="@drawable/chvronlefticon"
-                app:tint="#FFFFFF" />
+                android:src="@drawable/righticon"
+                app:tint="#444444" />
         </androidx.cardview.widget.CardView>
 
         <TextView
-            android:id="@+id/tv_title_cursos"
+            android:id="@+id/tv_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
             android:fontFamily="@font/potanosansbold"
             android:text="Cursos"
-            android:textColor="#141A1E"
+            android:textColor="?android:attr/textColorPrimary"
             android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="@+id/btn_back"
-            app:layout_constraintStart_toEndOf="@+id/btn_back"
-            app:layout_constraintTop_toTopOf="@+id/btn_back" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <!-- Main Content -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="#F5F5F5"
+        android:background="?attr/homeContentBackground"
         app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
-        app:layout_constraintTop_toBottomOf="@+id/header_cursos">
+        app:layout_constraintTop_toBottomOf="@+id/header_layout">
 
-        <!-- Search Bar (Reducida y centrada) -->
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/search_layout"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            app:boxBackgroundColor="@color/white"
+            app:boxBackgroundColor="?attr/homeCardBackground"
             app:boxCornerRadiusBottomEnd="16dp"
             app:boxCornerRadiusBottomStart="16dp"
             app:boxCornerRadiusTopEnd="16dp"
@@ -91,6 +89,7 @@
                 android:hint="Busque sus cursos"
                 android:inputType="text"
                 android:paddingVertical="10dp"
+                android:textColor="?attr/homeTextColorSebastian"
                 android:textSize="12sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -108,12 +107,11 @@
                 android:paddingHorizontal="24dp"
                 android:paddingBottom="24dp">
 
-                <!-- Matematica -->
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="95dp"
                     android:layout_marginBottom="12dp"
-                    app:cardBackgroundColor="@color/white"
+                    app:cardBackgroundColor="?attr/homeCardBackground"
                     app:cardCornerRadius="15dp"
                     app:cardElevation="0dp">
 
@@ -126,6 +124,7 @@
                             android:layout_height="match_parent"
                             android:scaleType="fitXY"
                             android:src="@drawable/bg_course_grade"
+                            app:tint="?attr/homeContentBackground"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
@@ -142,7 +141,7 @@
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/potanosansbold"
                                 android:text="Matematica"
-                                android:textColor="#141A1E"
+                                android:textColor="?attr/homeTextColorSebastian"
                                 android:textSize="13sp"
                                 app:layout_constraintEnd_toStartOf="@+id/ll_grade_1"
                                 app:layout_constraintStart_toStartOf="parent"
@@ -168,7 +167,7 @@
                                     android:layout_height="wrap_content"
                                     android:fontFamily="@font/pontanoregular"
                                     android:text="Ricardo Huaman"
-                                    android:textColor="#141A1E"
+                                    android:textColor="?attr/homeTextColorSebastian"
                                     android:textSize="11sp" />
                             </LinearLayout>
 
@@ -187,7 +186,7 @@
                                     android:layout_height="wrap_content"
                                     android:fontFamily="@font/leaguespartanmedium"
                                     android:text="Promedio"
-                                    android:textColor="#141A1E"
+                                    android:textColor="?attr/homeTextColorSebastian"
                                     android:textSize="12sp" />
 
                                 <TextView
@@ -196,19 +195,18 @@
                                     android:layout_marginTop="2dp"
                                     android:fontFamily="@font/leaguespartanbold"
                                     android:text="- - / 20"
-                                    android:textColor="#141A1E"
+                                    android:textColor="?attr/homeTextColorSebastian"
                                     android:textSize="15sp" />
                             </LinearLayout>
                         </androidx.constraintlayout.widget.ConstraintLayout>
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </androidx.cardview.widget.CardView>
 
-                <!-- Educación para el Trabajo -->
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="95dp"
                     android:layout_marginBottom="12dp"
-                    app:cardBackgroundColor="@color/white"
+                    app:cardBackgroundColor="?attr/homeCardBackground"
                     app:cardCornerRadius="15dp"
                     app:cardElevation="0dp">
 
@@ -221,6 +219,7 @@
                             android:layout_height="match_parent"
                             android:scaleType="fitXY"
                             android:src="@drawable/bg_course_grade"
+                            app:tint="?attr/homeContentBackground"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
@@ -237,7 +236,7 @@
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/potanosansbold"
                                 android:text="Educación para el Trabajo"
-                                android:textColor="#141A1E"
+                                android:textColor="?attr/homeTextColorSebastian"
                                 android:textSize="13sp"
                                 app:layout_constraintEnd_toStartOf="@+id/ll_grade_2"
                                 app:layout_constraintStart_toStartOf="parent"
@@ -263,7 +262,7 @@
                                     android:layout_height="wrap_content"
                                     android:fontFamily="@font/pontanoregular"
                                     android:text="Ricardo Huaman"
-                                    android:textColor="#141A1E"
+                                    android:textColor="?attr/homeTextColorSebastian"
                                     android:textSize="11sp" />
                             </LinearLayout>
 
@@ -282,7 +281,7 @@
                                     android:layout_height="wrap_content"
                                     android:fontFamily="@font/leaguespartanmedium"
                                     android:text="Promedio"
-                                    android:textColor="#141A1E"
+                                    android:textColor="?attr/homeTextColorSebastian"
                                     android:textSize="12sp" />
 
                                 <TextView
@@ -291,19 +290,18 @@
                                     android:layout_marginTop="2dp"
                                     android:fontFamily="@font/leaguespartanbold"
                                     android:text="- - / 20"
-                                    android:textColor="#141A1E"
+                                    android:textColor="?attr/homeTextColorSebastian"
                                     android:textSize="15sp" />
                             </LinearLayout>
                         </androidx.constraintlayout.widget.ConstraintLayout>
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </androidx.cardview.widget.CardView>
 
-                <!-- Ciencia Sociales -->
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="95dp"
                     android:layout_marginBottom="12dp"
-                    app:cardBackgroundColor="@color/white"
+                    app:cardBackgroundColor="?attr/homeCardBackground"
                     app:cardCornerRadius="15dp"
                     app:cardElevation="0dp">
 
@@ -316,6 +314,7 @@
                             android:layout_height="match_parent"
                             android:scaleType="fitXY"
                             android:src="@drawable/bg_course_grade"
+                            app:tint="?attr/homeContentBackground"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
@@ -332,7 +331,7 @@
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/potanosansbold"
                                 android:text="Ciencias Sociales"
-                                android:textColor="#141A1E"
+                                android:textColor="?attr/homeTextColorSebastian"
                                 android:textSize="13sp"
                                 app:layout_constraintEnd_toStartOf="@+id/ll_grade_3"
                                 app:layout_constraintStart_toStartOf="parent"
@@ -358,7 +357,7 @@
                                     android:layout_height="wrap_content"
                                     android:fontFamily="@font/pontanoregular"
                                     android:text="Ricardo Huaman"
-                                    android:textColor="#141A1E"
+                                    android:textColor="?attr/homeTextColorSebastian"
                                     android:textSize="11sp" />
                             </LinearLayout>
 
@@ -377,7 +376,7 @@
                                     android:layout_height="wrap_content"
                                     android:fontFamily="@font/leaguespartanmedium"
                                     android:text="Promedio"
-                                    android:textColor="#141A1E"
+                                    android:textColor="?attr/homeTextColorSebastian"
                                     android:textSize="12sp" />
 
                                 <TextView
@@ -386,7 +385,7 @@
                                     android:layout_marginTop="2dp"
                                     android:fontFamily="@font/leaguespartanbold"
                                     android:text="- - / 20"
-                                    android:textColor="#141A1E"
+                                    android:textColor="?attr/homeTextColorSebastian"
                                     android:textSize="15sp" />
                             </LinearLayout>
                         </androidx.constraintlayout.widget.ConstraintLayout>
