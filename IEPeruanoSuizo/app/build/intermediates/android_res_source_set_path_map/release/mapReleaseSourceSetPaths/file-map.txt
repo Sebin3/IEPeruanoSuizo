@@ -1,0 +1,7 @@
+com.example.ieperuanosuizoapp-pngs-0 C:\Users\ochoa\Dev\IEPeruanoSuizoDashboard\IEPeruanoSuizo\app\build\generated\res\pngs\release
+com.example.ieperuanosuizoapp-updated_navigation_xml-1 C:\Users\ochoa\Dev\IEPeruanoSuizoDashboard\IEPeruanoSuizo\app\build\generated\updated_navigation_xml\release
+com.example.ieperuanosuizoapp-packageReleaseResources-2 C:\Users\ochoa\Dev\IEPeruanoSuizoDashboard\IEPeruanoSuizo\app\build\intermediates\incremental\release\packageReleaseResources\merged.dir
+com.example.ieperuanosuizoapp-packageReleaseResources-3 C:\Users\ochoa\Dev\IEPeruanoSuizoDashboard\IEPeruanoSuizo\app\build\intermediates\incremental\release\packageReleaseResources\stripped.dir
+com.example.ieperuanosuizoapp-release-4 C:\Users\ochoa\Dev\IEPeruanoSuizoDashboard\IEPeruanoSuizo\app\build\intermediates\merged_res\release\mergeReleaseResources
+com.example.ieperuanosuizoapp-main-5 C:\Users\ochoa\Dev\IEPeruanoSuizoDashboard\IEPeruanoSuizo\app\src\main\res
+com.example.ieperuanosuizoapp-release-6 C:\Users\ochoa\Dev\IEPeruanoSuizoDashboard\IEPeruanoSuizo\app\src\release\res

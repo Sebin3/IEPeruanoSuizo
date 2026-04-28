@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr format="color" name="bottomNavBackground"/>
+    <attr format="color" name="drawerBackground"/>
+    <attr format="color" name="homeCardBackground"/>
+    <attr format="color" name="homeContentBackground"/>
+    <attr format="color" name="homeHeaderBackground"/>
+    <attr format="color" name="homeTextColorCardLabel"/>
+    <attr format="color" name="homeTextColorSebastian"/>
+    <attr format="color" name="homeTextColorTitles"/>
+    <color name="accent_red">#BA1924</color>
+    <color name="black">#FF000000</color>
+    <color name="brand_dark">#6D2932</color>
+    <color name="inputcolorgris">#90A5B4</color>
+    <color name="md_theme_background">#FFF8F6</color>
+    <color name="md_theme_error">#BA1A1A</color>
+    <color name="md_theme_errorContainer">#FFDAD6</color>
+    <color name="md_theme_onBackground">#231917</color>
+    <color name="md_theme_onError">#FFFFFF</color>
+    <color name="md_theme_onErrorContainer">#93000A</color>
+    <color name="md_theme_onPrimary">#FFFFFF</color>
+    <color name="md_theme_onPrimaryContainer">#723523</color>
+    <color name="md_theme_onSecondary">#FFFFFF</color>
+    <color name="md_theme_onSecondaryContainer">#5D4037</color>
+    <color name="md_theme_onSurface">#231917</color>
+    <color name="md_theme_onSurfaceVariant">#53433F</color>
+    <color name="md_theme_onTertiary">#FFFFFF</color>
+    <color name="md_theme_onTertiaryContainer">#6E380F</color>
+    <color name="md_theme_outline">#85736E</color>
+    <color name="md_theme_outlineVariant">#D8C2BC</color>
+    <color name="md_theme_primary">#8F4C38</color>
+    <color name="md_theme_primaryContainer">#FFDBD1</color>
+    <color name="md_theme_secondary">#77574E</color>
+    <color name="md_theme_secondaryContainer">#FFDBD1</color>
+    <color name="md_theme_surface">#FFF8F6</color>
+    <color name="md_theme_surfaceVariant">#F5DED8</color>
+    <color name="md_theme_tertiary">#8B4F24</color>
+    <color name="md_theme_tertiaryContainer">#FFDBC7</color>
+    <color name="primary_blue">#BA1924</color>
+    <color name="scheme2_bottom_left">#476838</color>
+    <color name="scheme2_bottom_right">#ABD398</color>
+    <color name="scheme2_top">#C7EFB2</color>
+    <color name="scheme3_bottom_left">#586253</color>
+    <color name="scheme3_bottom_right">#C0CAB9</color>
+    <color name="scheme3_top">#DCE6D5</color>
+    <color name="white">#FFFFFFFF</color>
+    <string name="app_name">IE Peruano Suizo APP</string>
+    <style name="Base.Theme.IEPeruanoSuizoAPP" parent="Theme.Material3.DayNight.NoActionBar">
+        
+        <item name="colorPrimary">@color/inputcolorgris</item>
+
+        
+        <item name="homeHeaderBackground">@color/white</item>
+        <item name="homeContentBackground">#F5F5F5</item>
+        <item name="homeCardBackground">@color/white</item>
+        <item name="homeTextColorSebastian">#141A1E</item>
+        <item name="homeTextColorTitles">#263238</item>
+        <item name="homeTextColorCardLabel">#455A64</item>
+        <item name="drawerBackground">#6D2932</item>
+        <item name="bottomNavBackground">@color/white</item>
+    </style>
+    <style name="CircleImage">
+        <item name="cornerSize">50%</item>
+    </style>
+    <style name="DrawerTextStyle" parent="TextAppearance.MaterialComponents.Body1">
+        <item name="android:fontFamily">@font/leaguespartanmedium</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+    <style name="Theme.IEPeruanoSuizoAPP" parent="Base.Theme.IEPeruanoSuizoAPP"/>
+    <style name="Theme.IEPeruanoSuizoAPP.Green" parent="Base.Theme.IEPeruanoSuizoAPP">
+        
+        <item name="colorPrimary">@color/scheme3_bottom_left</item>
+        <item name="homeHeaderBackground">@color/scheme3_top</item>
+        <item name="homeContentBackground">@color/scheme3_bottom_right</item>
+        
+        <item name="homeCardBackground">@color/white</item>
+        <item name="drawerBackground">@color/scheme3_bottom_left</item>
+        <item name="bottomNavBackground">@color/scheme3_bottom_right</item>
+    </style>
+</resources>

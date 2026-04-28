@@ -1,0 +1,630 @@
+[
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\drawable_informationaboutus.png.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\drawable\\informationaboutus.png"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\drawable_hamburgicon.png.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\drawable\\hamburgicon.png"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\font_londrinasolidlight.ttf.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\font\\londrinasolidlight.ttf"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\drawable_helpuscontact.png.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\drawable\\helpuscontact.png"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\color_radio_button_tint.xml.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\color\\radio_button_tint.xml"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\layout_item_usuario_qr.xml.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\layout\\item_usuario_qr.xml"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\drawable_diamundial.png.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\drawable\\diamundial.png"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\drawable_palettenewiconfinal.png.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\drawable\\palettenewiconfinal.png"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\layout_activity_register_biometric.xml.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\layout\\activity_register_biometric.xml"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\font_londrinasolidregular.ttf.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\font\\londrinasolidregular.ttf"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\drawable_lighthemeview.png.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\drawable\\lighthemeview.png"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\drawable_iconaparencedude.png.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\drawable\\iconaparencedude.png"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\font_leaguespartansemibold.ttf.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\font\\leaguespartansemibold.ttf"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\layout_activity_home.xml.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\layout\\activity_home.xml"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\layout_activity_successfully_register.xml.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\layout\\activity_successfully_register.xml"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\mipmap-hdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\mipmap-hdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\drawable_paletaicon.png.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\drawable\\paletaicon.png"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\drawable_rounded_button_background.xml.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\drawable\\rounded_button_background.xml"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\layout_activity_view_apariencia.xml.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\layout\\activity_view_apariencia.xml"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\drawable_logouticon.png.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\drawable\\logouticon.png"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\mipmap-anydpi-v26\\ic_launcher_round.xml"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\drawable_checkcircleassist.png.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\drawable\\checkcircleassist.png"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\mipmap-xhdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\mipmap-xhdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\drawable_ic_chevron_right_red.xml.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\drawable\\ic_chevron_right_red.xml"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\drawable_identificationicon.png.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\drawable\\identificationicon.png"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\drawable_buhosuizo.png.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\drawable\\buhosuizo.png"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\drawable_ic_share.xml.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\drawable\\ic_share.xml"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\drawable_bg_skip_button.xml.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\drawable\\bg_skip_button.xml"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\xml_backup_rules.xml.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\xml\\backup_rules.xml"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\drawable_checkassist.png.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\drawable\\checkassist.png"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\drawable_ic_buscador.xml.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\drawable\\ic_buscador.xml"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\drawable_message.png.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\drawable\\message.png"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\drawable_bg_bottom_panel.xml.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\drawable\\bg_bottom_panel.xml"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\drawable_questionicon.png.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\drawable\\questionicon.png"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\drawable_infoicon.png.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\drawable\\infoicon.png"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\drawable_languajeiconmodern.png.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\drawable\\languajeiconmodern.png"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\mipmap-mdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\mipmap-mdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\menu_bottom_nav_menu.xml.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\menu\\bottom_nav_menu.xml"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\drawable_logoie.png.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\drawable\\logoie.png"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\drawable_ic_email.xml.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\drawable\\ic_email.xml"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\drawable_paso2register.png.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\drawable\\paso2register.png"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\layout_activity_register_part2.xml.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\layout\\activity_register_part2.xml"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\xml_data_extraction_rules.xml.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\xml\\data_extraction_rules.xml"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\font_pontanomedium.ttf.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\font\\pontanomedium.ttf"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\drawable_ic_download.xml.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\drawable\\ic_download.xml"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\drawable_notificationdark.png.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\drawable\\notificationdark.png"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\drawable_ic_3puntos.xml.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\drawable\\ic_3puntos.xml"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\color_chip_background_color.xml.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\color\\chip_background_color.xml"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\layout_item_alumno_asistencia.xml.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\layout\\item_alumno_asistencia.xml"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\font_pontanoregular.ttf.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\font\\pontanoregular.ttf"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\layout_item_onboarding_page.xml.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\layout\\item_onboarding_page.xml"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\layout_activity_main.xml.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\drawable_languajeicon.png.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\drawable\\languajeicon.png"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\font_poppinsmedium.ttf.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\font\\poppinsmedium.ttf"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\drawable_infoappaboutus.png.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\drawable\\infoappaboutus.png"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\mipmap-xxxhdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\mipmap-xxxhdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\layout_nav_header_main.xml.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\layout\\nav_header_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\drawable_profileiconuser.png.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\drawable\\profileiconuser.png"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\layout_activity_auth_register.xml.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\layout\\activity_auth_register.xml"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\layout_activity_panel_asistencia.xml.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\layout\\activity_panel_asistencia.xml"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\font_leaguespartanmedium.ttf.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\font\\leaguespartanmedium.ttf"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\drawable_usuariolinux.png.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\drawable\\usuariolinux.png"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\drawable_infopruebasize1.png.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\drawable\\infopruebasize1.png"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\drawable_darkthemeview.png.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\drawable\\darkthemeview.png"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\drawable_succefullyskipbiometric.png.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\drawable\\succefullyskipbiometric.png"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\mipmap-xxhdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\mipmap-xxhdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\drawable_ic_arrow_right_red.xml.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\drawable\\ic_arrow_right_red.xml"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\layout_activity_register_cam_biometric.xml.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\layout\\activity_register_cam_biometric.xml"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\color_input_border_selector.xml.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\color\\input_border_selector.xml"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\layout_activity_presentation.xml.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\layout\\activity_presentation.xml"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\mipmap-xhdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\mipmap-xhdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\font_poppinsbold.ttf.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\font\\poppinsbold.ttf"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\drawable_groupprofileicon.png.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\drawable\\groupprofileicon.png"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\menu_app_actionbar.xml.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\menu\\app_actionbar.xml"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\color_nav_item_color_state.xml.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\color\\nav_item_color_state.xml"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\font_poppinslight.ttf.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\font\\poppinslight.ttf"
+    },
+    {
+        "merged": "com.example.ieperuanosuizoapp-debug-37:/layout_activity_user_profile.xml.flat",
+        "source": "com.example.ieperuanosuizoapp-main-39:/layout/activity_user_profile.xml"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\layout_item_curso.xml.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\layout\\item_curso.xml"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\mipmap-xxhdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\mipmap-xxhdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\mipmap-mdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\mipmap-mdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\drawable_ic_calendar_edit.xml.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\drawable\\ic_calendar_edit.xml"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\font_poppinsregular.ttf.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\font\\poppinsregular.ttf"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\drawable_mapubication.png.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\drawable\\mapubication.png"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\drawable_bg_card_dynamic.xml.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\drawable\\bg_card_dynamic.xml"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\drawable_portadaimagenprueba2.png.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\drawable\\portadaimagenprueba2.png"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\drawable_fuegoracha.png.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\drawable\\fuegoracha.png"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\menu_drawer_menu.xml.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\menu\\drawer_menu.xml"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\drawable_buhope.png.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\drawable\\buhope.png"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\layout_activity_auth_login.xml.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\layout\\activity_auth_login.xml"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\drawable_ic_class.xml.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\drawable\\ic_class.xml"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\font_leaguespartanbold.ttf.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\font\\leaguespartanbold.ttf"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\drawable_horarioescolar.png.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\drawable\\horarioescolar.png"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\mipmap-hdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\mipmap-hdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\drawable_bg_card_white.xml.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\drawable\\bg_card_white.xml"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\drawable_iconsecuritylock.png.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\drawable\\iconsecuritylock.png"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\drawable_portadaimagenprueba.png.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\drawable\\portadaimagenprueba.png"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\drawable_righticon.png.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\drawable\\righticon.png"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\drawable_succefullyregister.png.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\drawable\\succefullyregister.png"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\mipmap-xxxhdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\mipmap-xxxhdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\drawable_ic_homepress.xml.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\drawable\\ic_homepress.xml"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\drawable_biometrichead.png.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\drawable\\biometrichead.png"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\xml_file_paths.xml.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\xml\\file_paths.xml"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\drawable_registerimage.png.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\drawable\\registerimage.png"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\drawable_ic_check_circle.xml.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\drawable\\ic_check_circle.xml"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\layout_activity_cursos.xml.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\layout\\activity_cursos.xml"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\drawable_informationperson.png.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\drawable\\informationperson.png"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\drawable_lockicon.png.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\drawable\\lockicon.png"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\font_pontanosemibold.ttf.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\font\\pontanosemibold.ttf"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\drawable_configurationicon.png.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\drawable\\configurationicon.png"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\font_potanosansbold.ttf.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\font\\potanosansbold.ttf"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\drawable_code_badge_background.xml.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\drawable\\code_badge_background.xml"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\font_pontanolight.ttf.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\font\\pontanolight.ttf"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\drawable_progressacademico.png.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\drawable\\progressacademico.png"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\layout_app_actionbar.xml.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\layout\\app_actionbar.xml"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\font_londrinasolidblack.ttf.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\font\\londrinasolidblack.ttf"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\font_poppinssemibold.ttf.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\font\\poppinssemibold.ttf"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\drawable_ic_launcher_background.xml.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\drawable\\ic_launcher_background.xml"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\drawable_progresoacademico.png.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\drawable\\progresoacademico.png"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\drawable_notification.png.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\drawable\\notification.png"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\layout_activity_user_profile.xml.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\layout\\activity_user_profile.xml"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\color_chip_text_color.xml.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\color\\chip_text_color.xml"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\drawable_ic_qr_placeholder.xml.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\drawable\\ic_qr_placeholder.xml"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\drawable_bg_notification_badge.xml.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\drawable\\bg_notification_badge.xml"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\drawable_matentealdia.png.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\drawable\\matentealdia.png"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\drawable_flechaie.png.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\drawable\\flechaie.png"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\drawable_bg_notification_circle.xml.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\drawable\\bg_notification_circle.xml"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\drawable_securtitynew.png.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\drawable\\securtitynew.png"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\drawable_ic_fire.xml.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\drawable\\ic_fire.xml"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\drawable_paintpaletteicon.png.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\drawable\\paintpaletteicon.png"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\drawable_ic_chevron_down.xml.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\drawable\\ic_chevron_down.xml"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\drawable_paletteicon.png.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\drawable\\paletteicon.png"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\drawable_dot_active.xml.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\drawable\\dot_active.xml"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\drawable_ic_home.xml.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\drawable\\ic_home.xml"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\layout_activity_skip_create_acount.xml.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\layout\\activity_skip_create_acount.xml"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\drawable_aboutcode.png.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\drawable\\aboutcode.png"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\drawable_gatobelo.png.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\drawable\\gatobelo.png"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\mipmap-anydpi-v26\\ic_launcher.xml"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\drawable_pibblepruebaportada.png.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\drawable\\pibblepruebaportada.png"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\drawable_ic_launcher_foreground.xml.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\drawable\\ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\drawable_hamburgiconnew.png.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\drawable\\hamburgiconnew.png"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\drawable_saludatepe.png.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\drawable\\saludatepe.png"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\drawable_dot_inactive.xml.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\drawable\\dot_inactive.xml"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\drawable_carduseridentifinew.png.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\drawable\\carduseridentifinew.png"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\drawable_iconcalendar.png.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\drawable\\iconcalendar.png"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\drawable_iconbuscador.png.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\drawable\\iconbuscador.png"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\drawable_chvronlefticon.png.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\drawable\\chvronlefticon.png"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\drawable_threeplanaboutus.png.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\drawable\\threeplanaboutus.png"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\drawable_icon_cursos.png.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\drawable\\icon_cursos.png"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\layout_activity_usuarios.xml.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\layout\\activity_usuarios.xml"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\drawable_bg_course_grade.xml.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\drawable\\bg_course_grade.xml"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\drawable_pruebaimagen2.png.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\drawable\\pruebaimagen2.png"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\font_leaguespartanregular.ttf.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\font\\leaguespartanregular.ttf"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\drawable_cardubication.png.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\drawable\\cardubication.png"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\drawable_bg_agenda_header.xml.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\drawable\\bg_agenda_header.xml"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\drawable_pruebaimagen.png.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\drawable\\pruebaimagen.png"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\font_londrinasolidthin.ttf.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\font\\londrinasolidthin.ttf"
+    },
+    {
+        "merged": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-debug-37:\\drawable_rounded_background.xml.flat",
+        "source": "C:\\Users\\ochoa\\.gradle\\daemon\\9.3.1\\com.example.ieperuanosuizoapp-main-39:\\drawable\\rounded_background.xml"
+    }
+]
