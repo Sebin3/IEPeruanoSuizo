@@ -20,11 +20,12 @@ class AlumnoSerializer(serializers.ModelSerializer):
     nombre_completo = serializers.ReadOnlyField()
     seccion_nombre = serializers.CharField(source='seccion.__str__', read_only=True)
     qr_image = serializers.SerializerMethodField()
+    id_estudiante = serializers.CharField(source='dni', read_only=True)
 
     class Meta:
         model = Alumno
-        fields = ['id', 'codigo', 'nombres', 'apellidos', 'nombre_completo', 'dni', 'seccion', 'seccion_nombre', 'qr_token', 'qr_image', 'activo']
-        read_only_fields = ['qr_token', 'qr_image']
+        fields = ['id', 'codigo', 'nombres', 'apellidos', 'nombre_completo', 'id_estudiante', 'seccion', 'seccion_nombre', 'qr_token', 'qr_image', 'email_padre', 'activo']
+        read_only_fields = ['qr_token', 'qr_image', 'id_estudiante']
 
     def get_qr_image(self, obj):
         import qrcode, io, base64

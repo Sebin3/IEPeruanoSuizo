@@ -1,3 +1,4 @@
+import uuid
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 from django.db import models
 
@@ -31,6 +32,7 @@ class Usuario(AbstractBaseUser, PermissionsMixin):
     apellidos = models.CharField(max_length=100)
     rol = models.CharField(max_length=20, choices=ROL_CHOICES)
     telefono = models.CharField(max_length=15, blank=True)
+    qr_token = models.UUIDField(default=uuid.uuid4, unique=True, editable=False)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
     fecha_creacion = models.DateTimeField(auto_now_add=True)

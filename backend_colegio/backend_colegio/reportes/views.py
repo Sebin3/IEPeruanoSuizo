@@ -1,142 +1,150 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from django.db.models import Count, Q
+from rest_framework.permissions import IsAuthenticated
 from django.utils import timezone
+from django.http import HttpResponse
+from django.db.models import Count, Q
+import csv
 
 from config.permissions import EsAdminOProfesor
-from asistencia.models import Asistencia, SesionClase, Alumno, Seccion
+from asistencia.models import Alumno, Asistencia, SesionClase
+from asistencia_docente.models import AsistenciaDocente
+from usuarios.models import Usuario
 
 
-class ReporteAsistenciaSesionView(APIView):
-    permission_classes = [EsAdminOProfesor]
+class DashboardView(APIView):
+    permission_classes = [IsAuthenticated]
 
-    def get(self, request, sesion_id):
-        try:
-            sesion = SesionClase.objects.select_related('curso', 'seccion').get(id=sesion_id)
-        except SesionClase.DoesNotExist:
-            return Response({'success': False, 'message': 'Sesión no encontrada'}, status=404)
+    def get(self, request):
+        hoy = timezone.localdate()
 
-        asistencias = Asistencia.objects.filter(sesion=sesion).select_related('alumno')
+        # Stats alumnos hoy
+        sesiones_hoy = SesionClase.objects.filter(fecha=hoy)
+        asistencias_hoy = Asistencia.objects.filter(sesion__in=sesiones_hoy)
 
-        resumen = asistencias.aggregate(
-            total=Count('id'),
-            presentes=Count('id', filter=Q(estado='presente')),
-            tardanzas=Count('id', filter=Q(estado='tardanza')),
-            ausentes=Count('id', filter=Q(estado='ausente')),
-            justificados=Count('id', filter=Q(estado='justificado')),
+        total_alumnos = Alumno.objects.filter(activo=True).count()
+        presentes = asistencias_hoy.filter(estado='presente').count()
+        tardanzas = asistencias_hoy.filter(estado='tardanza').count()
+        ausentes = total_alumnos - presentes - tardanzas
+
+        # Stats docentes hoy
+        total_docentes = Usuario.objects.filter(rol='profesor', is_active=True).count()
+        doc_asistencias = AsistenciaDocente.objects.filter(fecha=hoy)
+        doc_presentes = doc_asistencias.filter(estado='presente').count()
+        doc_tardanzas = doc_asistencias.filter(estado='tardanza').count()
+        doc_ausentes = total_docentes - doc_presentes - doc_tardanzas
+
+        # Últimas 5 asistencias registradas hoy
+        ultimas = (
+            Asistencia.objects
+            .filter(sesion__in=sesiones_hoy, hora_registro__isnull=False)
+            .select_related('alumno', 'sesion__seccion')
+            .order_by('-hora_registro')[:5]
         )
-
-        detalle = [
+        ultimas_data = [
             {
-                'alumno_id': a.alumno.id,
                 'alumno': a.alumno.nombre_completo,
-                'codigo': a.alumno.codigo,
+                'seccion': str(a.sesion.seccion),
                 'estado': a.estado,
-                'hora_registro': a.hora_registro.strftime('%H:%M') if a.hora_registro else None,
-                'via_qr': a.registrado_via_qr,
+                'hora': a.hora_registro.astimezone(timezone.get_current_timezone()).strftime('%H:%M:%S'),
             }
-            for a in asistencias.order_by('alumno__apellidos')
+            for a in ultimas
         ]
 
         return Response({
             'success': True,
             'data': {
-                'sesion': {
-                    'id': sesion.id,
-                    'curso': sesion.curso.nombre,
-                    'seccion': str(sesion.seccion),
-                    'fecha': sesion.fecha,
-                    'hora_inicio': sesion.hora_inicio,
+                'fecha': str(hoy),
+                'alumnos': {
+                    'total': total_alumnos,
+                    'presentes': presentes,
+                    'tardanzas': tardanzas,
+                    'ausentes': ausentes,
                 },
-                'resumen': resumen,
-                'detalle': detalle,
+                'docentes': {
+                    'total': total_docentes,
+                    'presentes': doc_presentes,
+                    'tardanzas': doc_tardanzas,
+                    'ausentes': doc_ausentes,
+                },
+                'ultimas_asistencias': ultimas_data,
             }
         })
 
 
-class ReporteAsistenciaAlumnoView(APIView):
+class ReporteAsistenciaCSVView(APIView):
     permission_classes = [EsAdminOProfesor]
 
-    def get(self, request, alumno_id):
-        try:
-            alumno = Alumno.objects.select_related('seccion__grado').get(id=alumno_id)
-        except Alumno.DoesNotExist:
-            return Response({'success': False, 'message': 'Alumno no encontrado'}, status=404)
+    def get(self, request):
+        fecha = request.query_params.get('fecha', str(timezone.localdate()))
+        seccion_id = request.query_params.get('seccion')
 
-        fecha_inicio = request.query_params.get('fecha_inicio')
-        fecha_fin = request.query_params.get('fecha_fin')
+        sesiones = SesionClase.objects.filter(fecha=fecha)
+        if seccion_id:
+            sesiones = sesiones.filter(seccion_id=seccion_id)
 
-        asistencias = Asistencia.objects.filter(alumno=alumno).select_related('sesion__curso')
+        alumnos = Alumno.objects.filter(activo=True).select_related('seccion__grado')
+        if seccion_id:
+            alumnos = alumnos.filter(seccion_id=seccion_id)
 
-        if fecha_inicio:
-            asistencias = asistencias.filter(sesion__fecha__gte=fecha_inicio)
-        if fecha_fin:
-            asistencias = asistencias.filter(sesion__fecha__lte=fecha_fin)
+        asistencias = {
+            a.alumno_id: a
+            for a in Asistencia.objects.filter(sesion__in=sesiones).select_related('alumno')
+        }
 
-        resumen = asistencias.aggregate(
-            total=Count('id'),
-            presentes=Count('id', filter=Q(estado='presente')),
-            tardanzas=Count('id', filter=Q(estado='tardanza')),
-            ausentes=Count('id', filter=Q(estado='ausente')),
-            justificados=Count('id', filter=Q(estado='justificado')),
-        )
+        response = HttpResponse(content_type='text/csv; charset=utf-8')
+        response['Content-Disposition'] = f'attachment; filename="asistencia_{fecha}.csv"'
+        response.write('\ufeff')  # BOM para Excel
 
-        if resumen['total'] > 0:
-            resumen['porcentaje_asistencia'] = round(
-                (resumen['presentes'] + resumen['tardanzas']) / resumen['total'] * 100, 2
-            )
-        else:
-            resumen['porcentaje_asistencia'] = 0
+        writer = csv.writer(response)
+        writer.writerow(['Codigo', 'Apellidos', 'Nombres', 'Seccion', 'Estado', 'Hora', 'Via QR'])
 
-        detalle = [
-            {
-                'sesion_id': a.sesion.id,
-                'curso': a.sesion.curso.nombre,
-                'fecha': a.sesion.fecha,
-                'estado': a.estado,
-                'hora_registro': a.hora_registro.strftime('%H:%M') if a.hora_registro else None,
-            }
-            for a in asistencias.order_by('-sesion__fecha')
-        ]
+        for alumno in alumnos.order_by('apellidos'):
+            reg = asistencias.get(alumno.id)
+            hora = ''
+            if reg and reg.hora_registro:
+                hora = reg.hora_registro.astimezone(timezone.get_current_timezone()).strftime('%H:%M:%S')
+            writer.writerow([
+                alumno.codigo,
+                alumno.apellidos,
+                alumno.nombres,
+                str(alumno.seccion),
+                reg.estado if reg else 'ausente',
+                hora,
+                'Si' if reg and reg.registrado_via_qr else 'No',
+            ])
 
-        return Response({
-            'success': True,
-            'data': {
-                'alumno': {
-                    'id': alumno.id,
-                    'nombre': alumno.nombre_completo,
-                    'codigo': alumno.codigo,
-                    'seccion': str(alumno.seccion),
-                },
-                'resumen': resumen,
-                'detalle': detalle,
-            }
-        })
+        return response
 
 
-class ReporteAsistenciaSeccionView(APIView):
+class ReporteDocenteCSVView(APIView):
     permission_classes = [EsAdminOProfesor]
 
-    def get(self, request, seccion_id):
-        fecha = request.query_params.get('fecha', timezone.now().date())
+    def get(self, request):
+        fecha = request.query_params.get('fecha', str(timezone.localdate()))
+        docentes = Usuario.objects.filter(rol='profesor', is_active=True).order_by('apellidos')
+        registros = {
+            r.docente_id: r
+            for r in AsistenciaDocente.objects.filter(fecha=fecha)
+        }
 
-        alumnos = Alumno.objects.filter(seccion_id=seccion_id, activo=True).prefetch_related(
-            'asistencias'
-        )
+        response = HttpResponse(content_type='text/csv; charset=utf-8')
+        response['Content-Disposition'] = f'attachment; filename="asistencia_docentes_{fecha}.csv"'
+        response.write('\ufeff')
 
-        data = []
-        for alumno in alumnos:
-            asistencias = alumno.asistencias.filter(sesion__fecha=fecha)
-            resumen = asistencias.aggregate(
-                presentes=Count('id', filter=Q(estado='presente')),
-                tardanzas=Count('id', filter=Q(estado='tardanza')),
-                ausentes=Count('id', filter=Q(estado='ausente')),
-            )
-            data.append({
-                'alumno_id': alumno.id,
-                'alumno': alumno.nombre_completo,
-                'codigo': alumno.codigo,
-                **resumen,
-            })
+        writer = csv.writer(response)
+        writer.writerow(['Email', 'Apellidos', 'Nombres', 'Estado', 'Hora', 'Via QR'])
 
-        return Response({'success': True, 'data': data})
+        for d in docentes:
+            reg = registros.get(d.id)
+            hora = ''
+            if reg and reg.hora_registro:
+                hora = reg.hora_registro.astimezone(timezone.get_current_timezone()).strftime('%H:%M:%S')
+            writer.writerow([
+                d.email, d.apellidos, d.nombres,
+                reg.estado if reg else 'ausente',
+                hora,
+                'Si' if reg and reg.registrado_via_qr else 'No',
+            ])
+
+        return response

@@ -1,8 +1,8 @@
 from django.urls import path
-from .views import ReporteAsistenciaSesionView, ReporteAsistenciaAlumnoView, ReporteAsistenciaSeccionView
+from .views import DashboardView, ReporteAsistenciaCSVView, ReporteDocenteCSVView
 
 urlpatterns = [
-    path('asistencia/sesion/<int:sesion_id>/', ReporteAsistenciaSesionView.as_view(), name='reporte_sesion'),
-    path('asistencia/alumno/<int:alumno_id>/', ReporteAsistenciaAlumnoView.as_view(), name='reporte_alumno'),
-    path('asistencia/seccion/<int:seccion_id>/', ReporteAsistenciaSeccionView.as_view(), name='reporte_seccion'),
+    path('dashboard/', DashboardView.as_view(), name='dashboard'),
+    path('asistencia-csv/', ReporteAsistenciaCSVView.as_view(), name='reporte_asistencia_csv'),
+    path('docentes-csv/', ReporteDocenteCSVView.as_view(), name='reporte_docentes_csv'),
 ]

@@ -3,7 +3,7 @@ from rest_framework.routers import DefaultRouter
 from .views import (
     GradoViewSet, SeccionViewSet, AlumnoViewSet, CursoViewSet,
     SesionClaseViewSet, AsistenciaViewSet, RegistrarAsistenciaQRView,
-    EscanearQRAlumnoView, EstadoSesionHoyView
+    EscanearQRAlumnoView
 )
 
 router = DefaultRouter()
@@ -18,5 +18,4 @@ urlpatterns = [
     path('', include(router.urls)),
     path('registrar-qr/', RegistrarAsistenciaQRView.as_view(), name='registrar_qr'),
     path('escanear-qr/', EscanearQRAlumnoView.as_view(), name='escanear_qr_alumno'),
-    path('estado-sesion-hoy/', EstadoSesionHoyView.as_view(), name='estado_sesion_hoy'),
 ]

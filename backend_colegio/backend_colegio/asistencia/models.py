@@ -46,6 +46,7 @@ class Alumno(models.Model):
     seccion = models.ForeignKey(Seccion, on_delete=models.PROTECT, related_name='alumnos')
     fecha_nacimiento = models.DateField()
     qr_token = models.UUIDField(default=uuid.uuid4, unique=True, editable=False)
+    email_padre = models.EmailField(unique=True, null=True, blank=True)
     activo = models.BooleanField(default=True)
     fecha_creacion = models.DateTimeField(auto_now_add=True)
 

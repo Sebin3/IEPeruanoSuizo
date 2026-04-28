@@ -147,6 +147,11 @@ class AsistenciaViewSet(viewsets.ModelViewSet):
 class EscanearQRAlumnoView(APIView):
     permission_classes = [AllowAny]
 
+    # Ventana de entrada: 7:00 - 7:31 = presente, después = tardanza
+    HORA_INICIO_ENTRADA = (7, 0)
+    HORA_LIMITE_PUNTUAL = (7, 31)
+    HORA_FIN_ENTRADA    = (17, 0)  # hasta las 5pm
+
     def post(self, request):
         qr_token = request.data.get('qr_token')
         if not qr_token:
@@ -157,8 +162,16 @@ class EscanearQRAlumnoView(APIView):
         except Alumno.DoesNotExist:
             return Response({'success': False, 'message': 'QR no válido'}, status=status.HTTP_404_NOT_FOUND)
 
-        hoy = timezone.localdate()
-        ahora = timezone.now()
+        tz = timezone.get_current_timezone()
+        ahora = timezone.now().astimezone(tz)
+        hoy = ahora.date()
+        hora_actual = (ahora.hour, ahora.minute)
+
+        # Determinar estado según hora (sin restricción de horario por ahora)
+        if hora_actual <= self.HORA_LIMITE_PUNTUAL:
+            estado = 'presente'
+        else:
+            estado = 'tardanza'
 
         sesion = SesionClase.objects.filter(
             seccion=alumno.seccion,
@@ -169,32 +182,39 @@ class EscanearQRAlumnoView(APIView):
         if not sesion:
             return Response({'success': False, 'message': 'No hay sesión activa hoy para este alumno'}, status=status.HTTP_404_NOT_FOUND)
 
-        # Verificar ventana de 8 horas desde hora_inicio de la sesión
-        tz = timezone.get_current_timezone()
-        inicio_sesion = tz.localize(
-            sesion.fecha.timetuple().__class__(
-                sesion.fecha.year, sesion.fecha.month, sesion.fecha.day,
-                sesion.hora_inicio.hour, sesion.hora_inicio.minute
-            )
-        ) if timezone.is_naive(timezone.now()) else timezone.make_aware(
-            timezone.datetime(
-                sesion.fecha.year, sesion.fecha.month, sesion.fecha.day,
-                sesion.hora_inicio.hour, sesion.hora_inicio.minute
-            )
-        )
-        fin_ventana = inicio_sesion + timedelta(hours=VENTANA_HORAS)
-
-        if ahora > fin_ventana:
-            return Response({
-                'success': False,
-                'message': f'La sesión expiró. Solo se acepta asistencia durante {VENTANA_HORAS} horas desde el inicio.'
-            }, status=status.HTTP_400_BAD_REQUEST)
-
         asistencia, creada = Asistencia.objects.get_or_create(
             sesion=sesion,
             alumno=alumno,
-            defaults={'estado': 'presente', 'hora_registro': ahora, 'registrado_via_qr': True}
+            defaults={'estado': estado, 'hora_registro': ahora, 'registrado_via_qr': True}
         )
+
+        if not creada:
+            hora_str = asistencia.hora_registro.astimezone(tz).strftime('%H:%M:%S') if asistencia.hora_registro else '—'
+            return Response({
+                'success': False,
+                'message': f'Asistencia ya registrada a las {hora_str}',
+                'data': {
+                    'alumno': alumno.nombre_completo,
+                    'codigo': alumno.codigo,
+                    'estado': asistencia.estado,
+                    'hora_registro': hora_str,
+                }
+            }, status=status.HTTP_200_OK)
+
+        hora_str = ahora.strftime('%H:%M:%S')
+        return Response({
+            'success': True,
+            'message': 'Asistencia registrada',
+            'data': {
+                'alumno': alumno.nombre_completo,
+                'codigo': alumno.codigo,
+                'grado': str(alumno.seccion),
+                'curso': sesion.curso.nombre,
+                'estado': estado,
+                'hora_registro': hora_str,
+                'fecha': str(hoy),
+            }
+        }, status=status.HTTP_200_OK)
 
         if not creada:
             hora_str = asistencia.hora_registro.astimezone(tz).strftime('%H:%M:%S') if asistencia.hora_registro else '—'
