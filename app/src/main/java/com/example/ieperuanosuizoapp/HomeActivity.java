@@ -11,16 +11,22 @@ import android.view.View;
 import android.view.ViewOutlineProvider;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.view.LayoutInflater;
+import android.widget.Button;
+import android.widget.LinearLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.navigation.NavigationView;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Locale;
 
 public class HomeActivity extends AppCompatActivity {
@@ -30,6 +36,11 @@ public class HomeActivity extends AppCompatActivity {
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
     private View mainContent;
+    
+    // Vistas de Comunicados
+    private LinearLayout containerGlobales, containerSalon, layoutNoComunicados;
+    private TextView tvTitleSalon;
+    private String userMode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +63,10 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        // Obtener el modo de usuario
+        SharedPreferences userPrefs = getSharedPreferences("user_prefs", MODE_PRIVATE);
+        userMode = userPrefs.getString("user_mode", "ALUMNO");
+
         // Inicializar vistas del drawer
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.navigation_view);
@@ -59,11 +74,18 @@ public class HomeActivity extends AppCompatActivity {
         ivMenuIcon = findViewById(R.id.iv_menu_icon);
         ivMenuIcon.setTag("closed");
 
+        // Inicializar vistas de comunicados
+        containerGlobales = findViewById(R.id.container_comunicados_globales);
+        containerSalon = findViewById(R.id.container_comunicados_salon);
+        layoutNoComunicados = findViewById(R.id.layout_no_comunicados);
+        tvTitleSalon = findViewById(R.id.tv_title_salon);
+
         findViewById(R.id.btn_menu).setOnClickListener(v -> {
             drawerLayout.openDrawer(GravityCompat.START);
         });
 
         setupPerspectiveDrawer();
+        setupComunicadosLogic();
 
         // Configurar navegación del Drawer
         navigationView.setNavigationItemSelectedListener(item -> {
@@ -76,8 +98,29 @@ public class HomeActivity extends AppCompatActivity {
                 overridePendingTransition(0, 0);
                 drawerLayout.closeDrawer(GravityCompat.START);
                 return true;
+            } else if (id == R.id.nav_gestion_comunicados) {
+                Intent intent = new Intent(HomeActivity.this, GestionComunicadosActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                startActivity(intent);
+                overridePendingTransition(0, 0);
+                drawerLayout.closeDrawer(GravityCompat.START);
+                return true;
             } else if (id == R.id.nav_asistencia) {
                 Intent intent = new Intent(HomeActivity.this, PanelAsistencia.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                startActivity(intent);
+                overridePendingTransition(0, 0);
+                drawerLayout.closeDrawer(GravityCompat.START);
+                return true;
+            } else if (id == R.id.nav_modo_usuario) {
+                mostrarDialogoModoUsuario();
+                return true;
+            } else if (id == R.id.nav_identificacion) {
+                // Navegación a identificación (puedes añadir la actividad aquí luego)
+                drawerLayout.closeDrawer(GravityCompat.START);
+                return true;
+            } else if (id == R.id.nav_panel_admin) {
+                Intent intent = new Intent(HomeActivity.this, AdminPanelActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
                 overridePendingTransition(0, 0);
@@ -145,6 +188,12 @@ public class HomeActivity extends AppCompatActivity {
                 startActivity(intent);
                 overridePendingTransition(0, 0);
                 return true;
+            } else if (item.getItemId() == R.id.nav_horarios) {
+                android.content.Intent intent = new android.content.Intent(this, HorariosActivity.class);
+                intent.addFlags(android.content.Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                startActivity(intent);
+                overridePendingTransition(0, 0);
+                return true;
             } else {
                 bottomNav.setItemIconTintList(navTint);
             }
@@ -153,11 +202,237 @@ public class HomeActivity extends AppCompatActivity {
         });
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
-        bottomNav.setSelectedItemId(R.id.nav_home);
+    private void setupComunicadosLogic() {
+        if ("PROFESOR".equals(userMode)) {
+            tvTitleSalon.setText("Comunicados de mis Salones");
+            tvTitleSalon.setVisibility(View.VISIBLE);
+        } else {
+            tvTitleSalon.setText("Comunicados de mi Salón (4to A)");
+            tvTitleSalon.setVisibility(View.VISIBLE);
+        }
+
+        cargarComunicadosSimulados();
+        actualizarVisibilidadMenuLateral();
+    }
+
+    private void actualizarVisibilidadMenuLateral() {
+        android.view.Menu menu = navigationView.getMenu();
+        
+        // Items base (Siempre visibles para todos)
+        menu.findItem(R.id.nav_home).setVisible(true);
+        menu.findItem(R.id.nav_cursos).setVisible(true);
+        menu.findItem(R.id.nav_horarios).setVisible(true);
+        menu.findItem(R.id.nav_perfil).setVisible(true);
+        menu.findItem(R.id.nav_identificacion).setVisible(true);
+
+        // Lógica de visibilidad por Rol
+        if ("ALUMNO".equals(userMode)) {
+            menu.findItem(R.id.nav_cursos).setVisible(true);
+            menu.findItem(R.id.nav_horarios).setVisible(true);
+            menu.findItem(R.id.nav_perfil).setVisible(true);
+            menu.findItem(R.id.nav_identificacion).setVisible(true);
+            menu.findItem(R.id.nav_gestion_comunicados).setVisible(false);
+            menu.findItem(R.id.nav_asistencia).setVisible(false);
+            menu.findItem(R.id.nav_panel_admin).setVisible(false);
+            
+        } else if ("PROFESOR".equals(userMode)) {
+            menu.findItem(R.id.nav_cursos).setVisible(true);
+            menu.findItem(R.id.nav_horarios).setVisible(true);
+            menu.findItem(R.id.nav_perfil).setVisible(true);
+            menu.findItem(R.id.nav_identificacion).setVisible(true);
+            menu.findItem(R.id.nav_gestion_comunicados).setVisible(true);
+            menu.findItem(R.id.nav_asistencia).setVisible(false);
+            menu.findItem(R.id.nav_panel_admin).setVisible(false);
+            
+        } else if ("AUXILIAR".equals(userMode)) {
+            // Auxiliar: Solo Inicio, Comunicados y Asistencia
+            menu.findItem(R.id.nav_home).setVisible(true);
+            menu.findItem(R.id.nav_gestion_comunicados).setVisible(true);
+            menu.findItem(R.id.nav_asistencia).setVisible(true);
+            
+            // Ocultar el resto
+            menu.findItem(R.id.nav_cursos).setVisible(false);
+            menu.findItem(R.id.nav_horarios).setVisible(false);
+            menu.findItem(R.id.nav_perfil).setVisible(false);
+            menu.findItem(R.id.nav_identificacion).setVisible(false);
+            menu.findItem(R.id.nav_panel_admin).setVisible(false);
+
+        } else if ("ADMIN".equals(userMode)) {
+            menu.findItem(R.id.nav_home).setVisible(true);
+            menu.findItem(R.id.nav_gestion_comunicados).setVisible(true);
+            menu.findItem(R.id.nav_perfil).setVisible(true);
+            menu.findItem(R.id.nav_identificacion).setVisible(true);
+            menu.findItem(R.id.nav_asistencia).setVisible(true);
+            menu.findItem(R.id.nav_panel_admin).setVisible(true);
+            
+            // Ocultar Cursos y Horarios para el Admin
+            menu.findItem(R.id.nav_cursos).setVisible(false);
+            menu.findItem(R.id.nav_horarios).setVisible(false);
+        }
+        
+        // Mantenemos Cambiar Rol visible para pruebas
+        menu.findItem(R.id.nav_modo_usuario).setVisible(true);
+    }
+
+    private void cargarComunicadosSimulados() {
+        containerGlobales.removeAllViews();
+        containerSalon.removeAllViews();
+
+        List<Comunicado> globales = new ArrayList<>();
+        List<Comunicado> salon = new ArrayList<>();
+
+        // Simulación con Emisores (Dirección, Administración, Profesores, Monitoras)
+        globales.add(new Comunicado("Mantenimiento de Plataformas", 
+                "Se informa que este domingo habrá mantenimiento preventivo en el servidor de notas de 2:00 PM a 6:00 PM. El acceso a la visualización de calificaciones podría verse interrumpido temporalmente.", 
+                null, "GLOBAL", "Administración"));
+        globales.add(new Comunicado("Feriado Nacional", 
+                "El próximo lunes 1 de mayo no habrá labores escolares por el Día del Trabajo. Disfruten el merecido descanso con sus familias y compañeros.", 
+                null, "GLOBAL", "Dirección General"));
+        globales.add(new Comunicado("Aniversario Institucional", 
+                "¡Estamos de fiesta! El viernes 12 de mayo celebramos nuestro aniversario con actividades especiales en el patio central del colegio. Asistir con uniforme de gala.", 
+                null, "GLOBAL", "Director Académico"));
+
+        if ("PROFESOR".equals(userMode)) {
+            salon.add(new Comunicado("Reunión de Profesores", "Coordinación técnica pedagógica en la biblioteca a las 3:00 PM para tratar temas del BIM I.", null, "GLOBAL", "Subdirección"));
+            salon.add(new Comunicado("Entrega de Registros", "Mañana vence el plazo improrrogable para subir las notas finales del primer bimestre al sistema central.", null, "Multigrado", "Secretaría Académica"));
+        } else {
+            salon.add(new Comunicado("Proyecto de Ciencias", "Recuerden que la entrega de la maqueta sobre el sistema solar es mañana sin prórroga. No olvidar su informe.", null, "4to A", "Prof. Ricardo Huamán"));
+            salon.add(new Comunicado("Uniforme de Gala", "El lunes se realizará la formación general por aniversario, asistir obligatoriamente con uniforme de gala completo.", null, "4to A", "Monitora de Grado"));
+        }
+
+        if (globales.isEmpty() && salon.isEmpty()) {
+            layoutNoComunicados.setVisibility(View.VISIBLE);
+        } else {
+            layoutNoComunicados.setVisibility(View.GONE);
+            for (Comunicado c : globales) containerGlobales.addView(crearTarjetaComunicado(c, containerGlobales));
+            for (Comunicado c : salon) containerSalon.addView(crearTarjetaComunicado(c, containerSalon));
+        }
+    }
+
+    private View crearTarjetaComunicado(Comunicado comunicado, android.view.ViewGroup parent) {
+        View view = LayoutInflater.from(this).inflate(R.layout.item_comunicado, parent, false);
+        ((TextView) view.findViewById(R.id.tv_titulo_comunicado)).setText(comunicado.titulo);
+        
+        TextView tvContenido = view.findViewById(R.id.tv_contenido_comunicado);
+        ImageView ivBanner = view.findViewById(R.id.iv_banner_comunicado);
+        View layoutTexto = view.findViewById(R.id.layout_texto_comunicado);
+        TextView btnVerMas = view.findViewById(R.id.btn_ver_mas_comunicado);
+        
+        if (comunicado.bannerRes != null) {
+            // Imagen: Ocupa TODO el card, ocultamos texto
+            ivBanner.setImageResource(comunicado.bannerRes);
+            ivBanner.setVisibility(View.VISIBLE);
+            layoutTexto.setVisibility(View.GONE);
+        } else {
+            // Solo Texto
+            ivBanner.setVisibility(View.GONE);
+            layoutTexto.setVisibility(View.VISIBLE);
+            tvContenido.setText(comunicado.contenido);
+
+            // Si el texto es largo, mostrar "Ver más"
+            // Medimos aproximadamente por caracteres o líneas. Usaremos caracteres para simulación.
+            if (comunicado.contenido != null && comunicado.contenido.length() > 150) {
+                btnVerMas.setVisibility(View.VISIBLE);
+            } else {
+                btnVerMas.setVisibility(View.GONE);
+            }
+        }
+
+        TextView tvTag = view.findViewById(R.id.tv_tag_salon);
+        // Ahora mostramos quién envía el comunicado
+        tvTag.setText(comunicado.emisor);
+        tvTag.setVisibility(View.VISIBLE);
+
+        // Al hacer clic, si no es imagen, abrir modal
+        view.setOnClickListener(v -> {
+            if (comunicado.bannerRes == null) {
+                mostrarModalComunicado(comunicado);
+            }
+        });
+
+        return view;
+    }
+
+    private void mostrarModalComunicado(Comunicado comunicado) {
+        android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(this, R.style.CustomDialogTheme);
+        View modalView = LayoutInflater.from(this).inflate(R.layout.item_comunicado, null);
+        
+        androidx.cardview.widget.CardView card = (androidx.cardview.widget.CardView) modalView;
+        card.setLayoutParams(new android.widget.FrameLayout.LayoutParams(
+                android.view.ViewGroup.LayoutParams.MATCH_PARENT, 
+                android.view.ViewGroup.LayoutParams.WRAP_CONTENT));
+        
+        // Forzar fondo blanco para el modal para mejor vista
+        card.setCardBackgroundColor(Color.WHITE);
+        
+        android.view.ViewGroup.MarginLayoutParams cardParams = (android.view.ViewGroup.MarginLayoutParams) card.getLayoutParams();
+        cardParams.setMargins(0, 0, 0, 0);
+        card.setLayoutParams(cardParams);
+
+        ((TextView) modalView.findViewById(R.id.tv_titulo_comunicado)).setText(comunicado.titulo);
+        TextView tvContenido = modalView.findViewById(R.id.tv_contenido_comunicado);
+        tvContenido.setText(comunicado.contenido);
+        tvContenido.setMaxLines(100); 
+        
+        modalView.findViewById(R.id.btn_ver_mas_comunicado).setVisibility(View.GONE);
+        
+        TextView tvTag = modalView.findViewById(R.id.tv_tag_salon);
+        tvTag.setText("Enviado por: " + comunicado.emisor);
+        tvTag.setVisibility(View.VISIBLE);
+
+        builder.setView(modalView);
+        android.app.AlertDialog dialog = builder.create();
+        dialog.show();
+        
+        if (dialog.getWindow() != null) {
+            dialog.getWindow().setLayout((int) (getResources().getDisplayMetrics().widthPixels * 0.95),
+                                       android.view.ViewGroup.LayoutParams.WRAP_CONTENT);
+            dialog.getWindow().setBackgroundDrawable(new android.graphics.drawable.ColorDrawable(Color.TRANSPARENT));
+        }
+    }
+
+    private void mostrarDialogoEnviarComunicado() {
+        View dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_enviar_comunicado, null);
+        android.app.AlertDialog dialog = new android.app.AlertDialog.Builder(this, R.style.CustomDialogTheme)
+                .setView(dialogView)
+                .create();
+
+        // Configurar el Spinner con salones
+        android.widget.Spinner spinner = dialogView.findViewById(R.id.spinner_salon);
+        String[] salones = {"Global (Toda la Institución)", "1ro A", "2do B", "3ro C", "4to A", "5to B"};
+        android.widget.ArrayAdapter<String> adapter = new android.widget.ArrayAdapter<>(this,
+                android.R.layout.simple_spinner_dropdown_item, salones);
+        spinner.setAdapter(adapter);
+
+        dialogView.findViewById(R.id.btn_subir_banner).setOnClickListener(v ->
+                android.widget.Toast.makeText(this, "Galería abierta (Simulado)", android.widget.Toast.LENGTH_SHORT).show());
+
+        dialogView.findViewById(R.id.btn_cancelar).setOnClickListener(v -> dialog.dismiss());
+
+        dialogView.findViewById(R.id.btn_publicar).setOnClickListener(v -> {
+            String titulo = ((android.widget.EditText) dialogView.findViewById(R.id.et_titulo)).getText().toString();
+            if (titulo.isEmpty()) {
+                android.widget.Toast.makeText(this, "Por favor, escribe un título", android.widget.Toast.LENGTH_SHORT).show();
+            } else {
+                android.widget.Toast.makeText(this, "¡Comunicado publicado con éxito!", android.widget.Toast.LENGTH_SHORT).show();
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
+        if (dialog.getWindow() != null) {
+            dialog.getWindow().setLayout((int) (getResources().getDisplayMetrics().widthPixels * 0.95),
+                                       android.view.ViewGroup.LayoutParams.WRAP_CONTENT);
+            dialog.getWindow().setBackgroundDrawable(new android.graphics.drawable.ColorDrawable(Color.TRANSPARENT));
+        }
+    }
+
+    private static class Comunicado {
+        String titulo, contenido, salon, emisor;
+        Integer bannerRes;
+        Comunicado(String t, String c, Integer b, String s, String e) { 
+            titulo = t; contenido = c; bannerRes = b; salon = s; emisor = e; 
+        }
     }
 
     private void setupPerspectiveDrawer() {
@@ -266,5 +541,68 @@ public class HomeActivity extends AppCompatActivity {
         }
 
         ivDailyIllustration.setImageResource(illustrationRes);
+    }
+
+    private void mostrarDialogoModoUsuario() {
+        SharedPreferences prefs = getSharedPreferences("user_prefs", MODE_PRIVATE);
+        String modoActual = prefs.getString("user_mode", "ALUMNO");
+
+        String[] modos = {"Alumno", "Profesor", "Auxiliar", "Administrador"};
+        int seleccionActual = modoActual.equals("PROFESOR") ? 1 : 
+                             modoActual.equals("AUXILIAR") ? 2 :
+                             modoActual.equals("ADMIN") ? 3 : 0;
+
+        new android.app.AlertDialog.Builder(this)
+                .setTitle("Seleccionar Modo de Usuario")
+                .setSingleChoiceItems(modos, seleccionActual, (dialog, which) -> {
+                    String nuevoModo = which == 1 ? "PROFESOR" : 
+                                      which == 2 ? "AUXILIAR" :
+                                      which == 3 ? "ADMIN" : "ALUMNO";
+                    
+                    SharedPreferences.Editor editor = prefs.edit();
+                    editor.putString("user_mode", nuevoModo);
+                    editor.apply();
+
+                    // Actualizar el título del menú
+                    actualizarTituloModoUsuario(nuevoModo);
+
+                    // Mostrar mensaje
+                    String nombreModo = modos[which];
+                    android.widget.Toast.makeText(this, "Modo cambiado a: " + nombreModo, android.widget.Toast.LENGTH_SHORT).show();
+
+                    dialog.dismiss();
+                    drawerLayout.closeDrawer(GravityCompat.START);
+                    
+                    // Forzar refresco de interfaz
+                    userMode = nuevoModo;
+                    actualizarVisibilidadMenuLateral();
+                    setupComunicadosLogic();
+                })
+                .setNegativeButton("Cancelar", (dialog, which) -> {
+                    dialog.dismiss();
+                    drawerLayout.closeDrawer(GravityCompat.START);
+                })
+                .show();
+    }
+
+    private void actualizarTituloModoUsuario(String modo) {
+        String titulo = "Modo: " + modo.substring(0, 1).toUpperCase() + modo.substring(1).toLowerCase();
+        navigationView.getMenu().findItem(R.id.nav_modo_usuario).setTitle(titulo);
+        
+        // Mostrar/ocultar Panel de Administración según el modo
+        navigationView.getMenu().findItem(R.id.nav_panel_admin).setVisible("ADMIN".equals(modo));
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
+        bottomNav.setSelectedItemId(R.id.nav_home);
+        
+        // Actualizar el título del modo y comunicados al volver a la actividad
+        SharedPreferences prefs = getSharedPreferences("user_prefs", MODE_PRIVATE);
+        userMode = prefs.getString("user_mode", "ALUMNO");
+        actualizarTituloModoUsuario(userMode);
+        setupComunicadosLogic();
     }
 }

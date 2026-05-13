@@ -17,9 +17,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.IEPeruanoSuizoAPP">
         <activity
+            android:name=".GestionComunicadosActivity"
+            android:exported="false" />
+        <activity
+            android:name=".HorariosActivity"
+            android:exported="false" />
+        <activity
             android:name=".PanelAsistencia"
             android:exported="false"
             android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".AdminPanelActivity"
+            android:exported="false" />
+        <activity
+            android:name=".GestionEvaluacionesActivity"
+            android:exported="false" />
         <activity
             android:name=".ViewApariencia"
             android:exported="false" />

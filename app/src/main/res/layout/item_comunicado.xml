@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="320dp"
+    android:layout_height="200dp"
+    app:cardCornerRadius="20dp"
+    app:cardElevation="0dp"
+    android:layout_marginEnd="16dp"
+    android:layout_marginBottom="16dp"
+    app:cardBackgroundColor="@color/white">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="200dp">
+
+        <!-- Banner: Ocupa TODO el card si está visible -->
+        <ImageView
+            android:id="@+id/iv_banner_comunicado"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:scaleType="centerCrop"
+            android:visibility="gone"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- Contenedor de texto -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_texto_comunicado"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="44dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <ImageView
+                android:id="@+id/iv_logo_ieps"
+                android:layout_width="45dp"
+                android:layout_height="28dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:src="@drawable/logoie"
+                android:scaleType="fitCenter"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_titulo_comunicado"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="12dp"
+                android:text="Título"
+                android:textColor="#BA1924"
+                android:textSize="14sp"
+                android:maxLines="2"
+                android:ellipsize="end"
+                android:fontFamily="@font/poppinssemibold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/iv_logo_ieps"/>
+
+            <TextView
+                android:id="@+id/tv_contenido_comunicado"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginHorizontal="20dp"
+                android:text="Cuerpo del mensaje..."
+                android:textColor="#5E5F60"
+                android:textSize="12sp"
+                android:lineSpacingExtra="2dp"
+                android:maxLines="4"
+                android:ellipsize="end"
+                android:fontFamily="@font/poppinsregular"
+                app:layout_constraintTop_toBottomOf="@+id/tv_titulo_comunicado"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <TextView
+                android:id="@+id/btn_ver_mas_comunicado"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ver más"
+                android:textColor="#BA1924"
+                android:textSize="11sp"
+                android:fontFamily="@font/poppinsmedium"
+                android:layout_marginTop="6dp"
+                android:visibility="gone"
+                app:layout_constraintTop_toBottomOf="@+id/tv_contenido_comunicado"
+                app:layout_constraintStart_toStartOf="@+id/tv_contenido_comunicado" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!-- Tag de Salón (Anclado al fondo del contenedor principal) -->
+        <TextView
+            android:id="@+id/tv_tag_salon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="14dp"
+            android:text="Salón: 4to A"
+            android:textColor="#BCC1CD"
+            android:textSize="10sp"
+            android:fontFamily="@font/poppinsmedium"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

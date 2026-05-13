@@ -105,6 +105,16 @@ public class UserProfile extends AppCompatActivity {
                     startActivity(intent);
                     finish();
                     return true;
+                } else if (itemId == R.id.nav_homework) {
+                    Intent intent = new Intent(this, CursosActivity.class);
+                    startActivity(intent);
+                    finish();
+                    return true;
+                } else if (itemId == R.id.nav_horarios) {
+                    Intent intent = new Intent(this, HorariosActivity.class);
+                    startActivity(intent);
+                    finish();
+                    return true;
                 } else if (itemId == R.id.nav_more) {
                     return true;
                 }

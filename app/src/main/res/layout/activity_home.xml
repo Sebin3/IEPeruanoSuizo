@@ -351,17 +351,78 @@
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
-                <!-- Comunicados Recientes -->
+                <!-- Comunicados (Institucionales) -->
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="24dp">
-                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="8dp" android:fontFamily="@font/londrinasolidregular" android:text="Comunicados Recientes" android:textColor="?attr/homeTextColorTitles" android:textSize="18sp" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"/>
-                    <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:gravity="center_vertical" android:orientation="horizontal" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent">
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:fontFamily="@font/londrinasolidlight" android:text="Ver mas" android:textColor="#BA1924" android:textSize="15sp" />
+                    <TextView android:id="@+id/tv_title_comunicados" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="8dp" android:fontFamily="@font/londrinasolidregular" android:text="Comunicados" android:textColor="?attr/homeTextColorTitles" android:textSize="18sp" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"/>
+                    <LinearLayout android:id="@+id/btn_ver_mas_comunicados" android:layout_width="wrap_content" android:layout_height="wrap_content" android:gravity="center_vertical" android:orientation="horizontal" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent">
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:fontFamily="@font/londrinasolidlight" android:text="Ver todos" android:textColor="#BA1924" android:textSize="15sp" />
                         <ImageView android:layout_width="24dp" android:layout_height="24dp" android:layout_marginStart="4dp" android:src="@drawable/flechaie" />
                     </LinearLayout>
                 </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <!-- Contenedor de Comunicados Globales (CARRUSEL HORIZONTAL) -->
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:scrollbars="none"
+                    android:clipToPadding="false"
+                    android:paddingEnd="20dp">
+                    <LinearLayout
+                        android:id="@+id/container_comunicados_globales"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="16dp">
+                        <!-- Dinámico: Máximo 3 -->
+                    </LinearLayout>
+                </HorizontalScrollView>
+
+                <!-- Título Comunicados por Salón -->
+                <TextView
+                    android:id="@+id/tv_title_salon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginStart="8dp"
+                    android:fontFamily="@font/londrinasolidregular"
+                    android:text="Comunicados de mi Salón"
+                    android:textColor="?attr/homeTextColorTitles"
+                    android:textSize="18sp"
+                    android:visibility="gone"
+                    tools:visibility="visible" />
+
+                <!-- Contenedor de Comunicados por Salón (CARRUSEL HORIZONTAL) -->
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:scrollbars="none"
+                    android:clipToPadding="false"
+                    android:paddingEnd="20dp">
+                    <LinearLayout
+                        android:id="@+id/container_comunicados_salon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="12dp">
+                        <!-- Dinámico: Máximo 3 -->
+                    </LinearLayout>
+                </HorizontalScrollView>
+
+                <!-- Layout Vacío -->
+                <LinearLayout
+                    android:id="@+id/layout_no_comunicados"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:visibility="gone">
+                    <ImageView android:layout_width="80dp" android:layout_height="80dp" android:src="@drawable/buhope" android:alpha="0.3" />
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="No hay anuncios por ahora" android:textColor="#BCC1CD" android:fontFamily="@font/poppinsmedium" android:layout_marginTop="8dp" />
+                </LinearLayout>
 
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>

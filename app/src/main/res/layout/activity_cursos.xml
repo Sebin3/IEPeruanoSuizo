@@ -108,9 +108,13 @@
                 android:paddingBottom="24dp">
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/card_curso_1"
                     android:layout_width="match_parent"
                     android:layout_height="95dp"
                     android:layout_marginBottom="12dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?android:attr/selectableItemBackground"
                     app:cardBackgroundColor="?attr/homeCardBackground"
                     app:cardCornerRadius="15dp"
                     app:cardElevation="0dp">
@@ -146,6 +150,18 @@
                                 app:layout_constraintEnd_toStartOf="@+id/ll_grade_1"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/tv_salon_1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="2dp"
+                                android:fontFamily="@font/pontanoregular"
+                                android:text="Salón: 1A"
+                                android:textColor="#BA1924"
+                                android:textSize="10sp"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/tv_course_1" />
 
                             <LinearLayout
                                 android:layout_width="wrap_content"
@@ -203,9 +219,13 @@
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/card_curso_2"
                     android:layout_width="match_parent"
                     android:layout_height="95dp"
                     android:layout_marginBottom="12dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?android:attr/selectableItemBackground"
                     app:cardBackgroundColor="?attr/homeCardBackground"
                     app:cardCornerRadius="15dp"
                     app:cardElevation="0dp">
@@ -241,6 +261,18 @@
                                 app:layout_constraintEnd_toStartOf="@+id/ll_grade_2"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/tv_salon_2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="2dp"
+                                android:fontFamily="@font/pontanoregular"
+                                android:text="Salón: 2A"
+                                android:textColor="#BA1924"
+                                android:textSize="10sp"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/tv_course_2" />
 
                             <LinearLayout
                                 android:layout_width="wrap_content"
@@ -298,9 +330,13 @@
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/card_curso_3"
                     android:layout_width="match_parent"
                     android:layout_height="95dp"
                     android:layout_marginBottom="12dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?android:attr/selectableItemBackground"
                     app:cardBackgroundColor="?attr/homeCardBackground"
                     app:cardCornerRadius="15dp"
                     app:cardElevation="0dp">
@@ -336,6 +372,18 @@
                                 app:layout_constraintEnd_toStartOf="@+id/ll_grade_3"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/tv_salon_3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="2dp"
+                                android:fontFamily="@font/pontanoregular"
+                                android:text="Salón: 2B"
+                                android:textColor="#BA1924"
+                                android:textSize="10sp"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/tv_course_3" />
 
                             <LinearLayout
                                 android:layout_width="wrap_content"

@@ -147,7 +147,37 @@ public class PanelAsistencia extends AppCompatActivity {
         btnActivarCamara.setOnClickListener(v -> checkCameraPermission());
         setupBottomNavigation(findViewById(R.id.bottom_navigation));
 
+        mostrarDialogoInicioAsistencia();
         iniciarSimulacionEscaneo();
+    }
+
+    private void mostrarDialogoInicioAsistencia() {
+        View dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_inicio_asistencia, null);
+        android.app.AlertDialog dialog = new android.app.AlertDialog.Builder(this, R.style.CustomDialogTheme)
+                .setView(dialogView)
+                .setCancelable(false) // Forzar elección
+                .create();
+
+        // Configurar Fecha Dinámica
+        TextView tvFecha = dialogView.findViewById(R.id.tv_fecha_dialog);
+        SimpleDateFormat sdf = new SimpleDateFormat("EEEE, d 'de' MMMM", new Locale("es", "PE"));
+        String fechaActual = sdf.format(Calendar.getInstance().getTime());
+        tvFecha.setText(fechaActual.substring(0, 1).toUpperCase() + fechaActual.substring(1));
+
+        dialogView.findViewById(R.id.btn_volver_asistencia).setOnClickListener(v -> {
+            dialog.dismiss();
+            finish(); // Regresa a la pantalla anterior
+        });
+
+        dialogView.findViewById(R.id.btn_comenzar_asistencia).setOnClickListener(v -> {
+            dialog.dismiss();
+            Toast.makeText(this, "Panel listo para registro", Toast.LENGTH_SHORT).show();
+        });
+
+        dialog.show();
+        if (dialog.getWindow() != null) {
+            dialog.getWindow().setBackgroundDrawable(new android.graphics.drawable.ColorDrawable(Color.TRANSPARENT));
+        }
     }
 
     private void iniciarSimulacionEscaneo() {
@@ -325,6 +355,14 @@ public class PanelAsistencia extends AppCompatActivity {
             int id = item.getItemId();
             if (id == R.id.nav_home) {
                 startActivity(new Intent(this, HomeActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+                finish();
+                return true;
+            } else if (id == R.id.nav_homework) {
+                startActivity(new Intent(this, CursosActivity.class));
+                finish();
+                return true;
+            } else if (id == R.id.nav_horarios) {
+                startActivity(new Intent(this, HorariosActivity.class));
                 finish();
                 return true;
             }
